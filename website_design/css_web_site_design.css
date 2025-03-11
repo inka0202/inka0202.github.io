@@ -1,0 +1,150 @@
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 60px;
+}
+
+body {
+  font-family: "Comic Sans MS", sans-serif;
+  background-color: #f4f5f8;
+  margin: 0;
+  padding: 0;
+  color: #250501; /*4a4a4a --- also good but more light color #*/
+  display: flex;
+  flex-direction: column;
+}
+.site-header {
+  background: #02634f;
+  padding: 15px 0px 2px 0px; /*checked ---- important*/
+}
+#headr1 {
+  /*image*/
+  float: left;
+  margin: 0px;
+  padding: 0px 10px;
+  border: none;
+  margin: 0px 5px;
+  user-select: none;
+}
+
+.logo0 {
+  user-select: none;
+  font-size: 60px;
+  background: #02634f;
+  color: #fffdd0;
+  font-family: "Lucida Handwriting", sans-serif;
+  font-weight: bold;
+  text-align: left;
+  font-style: italic;
+  margin: 0px 20px 10px 85px;
+}
+
+ul.topnav {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #035c4a;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+}
+
+ul.topnav li {
+  float: left;
+  list-style-type: none;
+  margin: 0px 0px;
+  padding: 0px;
+}
+
+ul.topnav li a {
+  text-decoration: none;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 20px 13px;
+  margin: 0px 3px;
+  font-size: 21px;
+}
+
+ul.topnav li a:hover {
+  background-color: #014033;
+}
+/*main*/
+#greeting {
+  font-size: 20px;
+}
+main {
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px auto;
+  max-width: 950px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+main h2 {
+  margin: 10px 17px;
+  padding: 15px;
+  font-size: 25px;
+  color: #014033;
+  text-align: center;
+  font-family: "Lucida Handwriting", sans-serif;
+}
+main p {
+  font-size: 19px;
+  line-height: 1.6;
+  max-width: 800px;
+  margin: 0px 15px;
+  padding: 10px;
+  text-align: justify;
+}
+
+/*image*/
+.headr2 {
+  float: left;
+  padding: 0px 10px;
+  border: none;
+  margin: 5px;
+  user-select: none;
+}
+/*footer*/
+footer {
+  background-color: #035c4a;
+  color: #fff;
+  text-align: center;
+  padding: 8px 20px;
+  position: fixed;
+
+  width: 100%;
+  bottom: 0;
+}
+
+footer p {
+  margin: 0;
+}
+
+/*switch button */
+.button {
+  padding: 10px 20px;
+  margin: 5px;
+  font-size: 17px;
+  border: none;
+  border-radius: 25px; /*rounded corners*/
+  background: linear-gradient(145deg, #d68707, #f4a300);
+  color: white;
+  cursor: pointer; /*cursor pointer on hover*/
+  box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+  position: absolute; /*position it inside the header*/
+  right: 15px;
+  top: 4%;
+}
+
+button:hover {
+  background: linear-gradient(145deg, #f4a300, #d68707);
+  box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.5);
+}
+
+button:focus {
+  outline: none; /* Remove default focus outline */
+}

@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Designing for the Autism Spectrum — Web Design Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════
+   Calm Canvas — design system embodying its own message
+   Lora (display) + Atkinson Hyperlegible (body — accessibility-first)
+   Warm cream · Sage · Dusty blue · Caramel
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --bg:        #f8f5ee;
+  --bg2:       #f0ebe0;
+  --bg3:       #e6dfce;
+  --slate:     #2c3a45;
+  --slate-l:   #3d4d5a;
+  --text:      #1f2937;
+  --muted:     #4b5566;
+  --dim:       #6b7280;
+  --sage:      #7a9170;
+  --sage-d:    #5e7458;
+  --blue:      #6b8a9b;
+  --blue-d:    #4f6c7d;
+  --caramel:   #c89262;
+  --caramel-d: #a87447;
+  --red:       #c47a7a;
+  --red-d:     #a55a5a;
+  --border:    rgba(31,41,55,0.09);
+  --border-d:  rgba(248,245,238,0.1);
+  --shadow:    0 1px 2px rgba(31,41,55,0.04), 0 2px 8px rgba(31,41,55,0.04);
+  --ease:      cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family:'Atkinson Hyperlegible', sans-serif;
+  background:var(--slate);
+  color:var(--text);
+  height:100vh; overflow:hidden;
+  user-select:none;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Deck ── */
+.deck { width:100%; height:100vh; position:relative; }
+
+.slide {
+  position:absolute; inset:0;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  padding:64px 96px 80px;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .55s var(--ease);
+}
+.slide.active { opacity:1; pointer-events:all; }
+
+/* ── Soft cross-fade overlay ── */
+.fade-overlay {
+  position:fixed; inset:0;
+  background:var(--bg);
+  opacity:0; pointer-events:none; z-index:90;
+  transition:opacity .25s var(--ease);
+}
+.fade-overlay.on { opacity:.4; }
+
+/* ═══════ TYPOGRAPHY ═══════ */
+h1 {
+  font-family:'Lora', serif;
+  font-size:3rem; font-weight:500; line-height:1.15;
+  letter-spacing:-.015em;
+  color:var(--text);
+}
+h2 {
+  font-family:'Lora', serif;
+  font-size:1.85rem; font-weight:500;
+  letter-spacing:-.01em; line-height:1.2;
+  color:var(--text); margin-bottom:1rem;
+}
+h3 {
+  font-size:.7rem; font-weight:700;
+  color:var(--caramel-d); text-transform:uppercase;
+  letter-spacing:.18em; margin-bottom:.45rem;
+}
+p { font-size:.95rem; line-height:1.75; color:var(--muted); font-weight:400; }
+strong { color:var(--text); font-weight:700; }
+em { color:var(--sage-d); font-style:normal; font-weight:700; }
+
+/* ── Label ── */
+.lbl {
+  position:absolute; top:36px; left:96px;
+  font-size:.65rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase;
+  color:var(--dim); opacity:.7;
+}
+
+/* ── Soft rule ── */
+.rule {
+  width:48px; height:2px; background:var(--caramel);
+  margin:1rem 0; border-radius:1px;
+}
+.rule-c { margin:1rem auto; }
+
+/* ═══════ COMPONENTS ═══════ */
+
+.card {
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:1.3rem 1.5rem;
+  box-shadow:var(--shadow);
+}
+.card .mi { font-size:1.5rem; color:var(--sage); display:block; margin-bottom:.55rem; }
+.card h4 {
+  font-family:'Lora', serif;
+  font-size:1.05rem; font-weight:600; color:var(--text);
+  margin-bottom:.4rem; letter-spacing:-.005em;
+}
+.card p { font-size:.85rem; line-height:1.65; color:var(--muted); }
+
+.card-blue .mi { color:var(--blue); }
+.card-caramel .mi { color:var(--caramel-d); }
+
+.card-do {
+  border-left:4px solid var(--sage);
+  background:#fff;
+}
+.card-do .mi { color:var(--sage-d); }
+.card-dont {
+  border-left:4px solid var(--red);
+  background:#fff;
+}
+.card-dont .mi { color:var(--red-d); }
+
+/* Grids */
+.g2 { display:grid; grid-template-columns:1fr 1fr; gap:1.6rem; width:100%; }
+.g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:1.3rem; width:100%; }
+.g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem; width:100%; }
+.tc { display:grid; grid-template-columns:1fr 1fr; gap:2.4rem; width:100%; align-items:start; }
+.tc-55 { display:grid; grid-template-columns:55% 1fr; gap:2.4rem; width:100%; align-items:start; }
+.tc-60 { display:grid; grid-template-columns:60% 1fr; gap:2.4rem; width:100%; align-items:start; }
+
+/* Soft list items */
+.li-list { display:flex; flex-direction:column; gap:.55rem; width:100%; }
+.li {
+  display:flex; align-items:flex-start; gap:.85rem;
+  padding:.75rem 1rem;
+  background:#fff;
+  border-left:3px solid var(--sage);
+  border-radius:0 6px 6px 0;
+  box-shadow:var(--shadow);
+}
+.li .mi { font-size:1rem; color:var(--sage-d); flex-shrink:0; margin-top:2px; }
+.li p { font-size:.86rem; line-height:1.6; color:var(--muted); }
+.li-blue { border-left-color:var(--blue); }
+.li-blue .mi { color:var(--blue-d); }
+.li-caramel { border-left-color:var(--caramel); }
+.li-caramel .mi { color:var(--caramel-d); }
+.li-red { border-left-color:var(--red); }
+.li-red .mi { color:var(--red-d); }
+
+/* Soft callout */
+.callout {
+  background:rgba(122,145,112,0.08);
+  border:1px solid rgba(122,145,112,0.18);
+  border-left:4px solid var(--sage);
+  border-radius:6px;
+  padding:.95rem 1.25rem;
+}
+.callout p { font-size:.88rem; line-height:1.65; color:var(--muted); }
+.callout-blue {
+  background:rgba(107,138,155,0.07);
+  border-color:rgba(107,138,155,0.18);
+  border-left-color:var(--blue);
+}
+.callout-warm {
+  background:rgba(200,146,98,0.07);
+  border-color:rgba(200,146,98,0.18);
+  border-left-color:var(--caramel);
+}
+.callout-red {
+  background:rgba(196,122,122,0.06);
+  border-color:rgba(196,122,122,0.18);
+  border-left-color:var(--red);
+}
+
+/* Stat */
+.stat { text-align:center; }
+.stat-n {
+  font-family:'Lora', serif; font-size:3.2rem;
+  font-weight:600; color:var(--caramel-d); line-height:1;
+}
+.stat-l {
+  font-size:.78rem; color:var(--muted); margin-top:.5rem;
+  letter-spacing:.04em; line-height:1.4;
+}
+
+/* Quote */
+.quote {
+  font-family:'Lora', serif;
+  font-size:1.18rem; font-style:italic; font-weight:500;
+  color:var(--slate); line-height:1.5;
+  padding:1rem 0 1rem 1.5rem;
+  border-left:3px solid var(--caramel);
+  max-width:520px;
+}
+.quote-src {
+  display:block; margin-top:.6rem;
+  font-family:'Atkinson Hyperlegible', sans-serif;
+  font-size:.78rem; font-weight:700;
+  color:var(--dim); font-style:normal;
+  letter-spacing:.04em;
+}
+
+/* Code block */
+.code {
+  font-family:'Courier New', monospace;
+  font-size:.78rem;
+  background:var(--bg2);
+  padding:.95rem 1.2rem;
+  border-radius:6px;
+  border:1px solid var(--border);
+  line-height:1.7;
+  color:var(--slate);
+  overflow-x:auto;
+}
+.code .key { color:var(--caramel-d); font-weight:700; }
+.code .prop { color:var(--blue-d); }
+.code .val { color:var(--sage-d); }
+.code .cmt { color:var(--dim); font-style:italic; }
+
+/* Comparison row */
+.compare-row {
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:1rem; padding:.7rem 0;
+  border-bottom:1px solid var(--border);
+}
+.compare-row:last-child { border-bottom:none; }
+.compare-row .bad,
+.compare-row .good {
+  display:flex; align-items:flex-start; gap:.6rem;
+  font-size:.84rem; line-height:1.55;
+}
+.compare-row .bad { color:var(--red-d); }
+.compare-row .good { color:var(--sage-d); }
+.compare-row .mi { font-size:.95rem; flex-shrink:0; margin-top:2px; }
+
+/* Width utils */
+.w900 { max-width:900px; width:100%; }
+.w960 { max-width:960px; width:100%; }
+.w1000 { max-width:1000px; width:100%; }
+.tac { text-align:center; }
+.mt1 { margin-top:.7rem; }
+.mt2 { margin-top:1.2rem; }
+.mt3 { margin-top:1.6rem; }
+
+/* Material Icons */
+.mi { font-family:'Material Icons Round'; font-style:normal; display:inline-block; vertical-align:middle; }
+
+/* ═══════ LIGHT SLIDES ═══════ */
+.s-light {
+  background:var(--bg);
+  overflow-y:auto;
+}
+
+/* ═══════ DARK / SECTION SLIDES ═══════ */
+.s-dark {
+  background:var(--slate);
+  color:#fff;
+  overflow:hidden;
+}
+.s-dark h1 { color:#fff; }
+.s-dark h2 { color:#fff; }
+.s-dark h3 { color:var(--caramel); }
+.s-dark p { color:rgba(255,255,255,0.78); }
+.s-dark strong { color:#fff; }
+.s-dark .lbl { color:rgba(255,255,255,0.45); }
+
+.s-dark::before {
+  content:''; position:absolute; inset:0;
+  background:radial-gradient(ellipse 70% 55% at 50% 45%, rgba(200,146,98,0.07), transparent 70%);
+  pointer-events:none;
+}
+
+/* ═══════ TITLE SLIDE ═══════ */
+.s-title { text-align:center; }
+.s-title h1 {
+  max-width:780px; font-size:3.5rem; font-weight:500;
+  letter-spacing:-.02em; line-height:1.12;
+}
+.s-title .kicker {
+  font-size:.72rem; font-weight:700; color:var(--caramel);
+  letter-spacing:.28em; text-transform:uppercase;
+  margin-bottom:1.4rem;
+}
+.s-title .subtitle {
+  color:rgba(255,255,255,0.7); font-size:1.05rem;
+  font-weight:400; margin-top:.8rem;
+  font-family:'Lora', serif; font-style:italic;
+  max-width:520px; line-height:1.55;
+}
+
+/* ═══════ SECTION OPENER ═══════ */
+.s-section { text-align:center; }
+.s-section .sec-num {
+  font-family:'Lora', serif;
+  font-size:1.1rem; font-weight:500; line-height:1;
+  color:var(--caramel); letter-spacing:.1em;
+  margin-bottom:.4rem;
+}
+.s-section h1 {
+  font-size:2.6rem; max-width:600px;
+  font-weight:500;
+}
+.s-section p {
+  max-width:480px; text-align:center; font-size:.95rem;
+  font-style:italic; font-family:'Lora',serif;
+  color:rgba(255,255,255,0.65);
+}
+
+/* ═══════ CLOSING ═══════ */
+.s-close { text-align:center; }
+.s-close h1 { font-size:2.6rem; max-width:620px; }
+.s-close p { max-width:540px; text-align:center; }
+
+/* ═══════ REVEAL ANIMATION (gentle fade only) ═══════ */
+.reveal > * {
+  opacity:0;
+  transition:opacity .65s var(--ease);
+}
+.slide.active .reveal > *:nth-child(1) { opacity:1; transition-delay:.12s; }
+.slide.active .reveal > *:nth-child(2) { opacity:1; transition-delay:.24s; }
+.slide.active .reveal > *:nth-child(3) { opacity:1; transition-delay:.34s; }
+.slide.active .reveal > *:nth-child(4) { opacity:1; transition-delay:.44s; }
+.slide.active .reveal > *:nth-child(5) { opacity:1; transition-delay:.54s; }
+.slide.active .reveal > *:nth-child(6) { opacity:1; transition-delay:.64s; }
+.slide.active .reveal > *:nth-child(7) { opacity:1; transition-delay:.74s; }
+.slide.active .reveal > *:nth-child(8) { opacity:1; transition-delay:.84s; }
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .slide, .reveal > * { transition:none !important; }
+  .slide.active .reveal > * { opacity:1; }
+}
+
+/* ═══════ PROGRESS BAR ═══════ */
+.progress-bar {
+  position:fixed; bottom:0; left:0;
+  height:2px;
+  background:var(--caramel);
+  transition:width .5s var(--ease); z-index:100;
+}
+
+/* ═══════ NAV ═══════ */
+.nav {
+  position:fixed; bottom:24px; right:48px;
+  display:flex; align-items:center; gap:.8rem; z-index:100;
+}
+.nbtn {
+  width:36px; height:36px; border-radius:50%;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,0.95);
+  color:var(--muted); cursor:pointer;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .25s var(--ease);
+  outline:none; backdrop-filter:blur(8px);
+}
+.nbtn:hover { border-color:var(--caramel); color:var(--caramel-d); }
+.nbtn:focus-visible { outline:2px solid var(--caramel); outline-offset:2px; }
+.nbtn .mi { font-size:16px; }
+.ncount {
+  font-size:.74rem; color:var(--dim);
+  letter-spacing:.05em; font-weight:700;
+}
+
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+<!-- ═══════════ S1 — TITLE ═══════════ -->
+<div class="slide s-dark s-title active" data-type="dark">
+  <div class="reveal" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="kicker">Web Design · Inclusive · Calm</div>
+    <h1>Designing for the<br>Autism Spectrum</h1>
+    <div class="rule rule-c"></div>
+    <p class="subtitle">A practical guide to building digital experiences that are predictable, calm, and genuinely accessible to autistic users.</p>
+  </div>
+</div>
+
+<!-- ═══════════ S2 — WHY IT MATTERS ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Introduction</span>
+  <div class="reveal w960">
+    <h3>Context</h3>
+    <h2>Why this matters</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <p>Roughly <em>1–2% of the population</em> is on the autism spectrum. That's tens of millions of people who use the web every day — for shopping, work, healthcare, communication.</p>
+        <p class="mt2">Autism is a <strong>spectrum</strong>: a wide range of sensory sensitivities, processing styles, and communication preferences. There is no single "autistic user". But there are patterns — and patterns we can design for.</p>
+        <div class="callout-warm callout mt2">
+          <p><span class="mi" style="font-size:1rem;color:var(--caramel-d);">lightbulb</span> <strong>The curb-cut effect:</strong> designing for the spectrum improves the experience for <em>everyone</em> — especially users who are tired, distracted, anxious, or new to the language.</p>
+        </div>
+      </div>
+      <div>
+        <div class="g2" style="gap:1.3rem;">
+          <div class="stat">
+            <div class="stat-n">~1.5%</div>
+            <div class="stat-l">of the population<br>on the spectrum</div>
+          </div>
+          <div class="stat">
+            <div class="stat-n">75M+</div>
+            <div class="stat-l">autistic users<br>worldwide (est.)</div>
+          </div>
+        </div>
+        <div class="quote mt3">
+          "If you've met one person with autism, you've met one person with autism."
+          <span class="quote-src">— Dr. Stephen Shore</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S3 — SECTION: PRINCIPLES ═══════════ -->
+<div class="slide s-dark s-section" data-type="dark">
+  <div class="reveal" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="sec-num">Part I</div>
+    <h1>Visual Principles</h1>
+    <div class="rule rule-c"></div>
+    <p>Typography, color, contrast, and spatial structure — the foundation of a calm, readable interface.</p>
+  </div>
+</div>
+
+<!-- ═══════════ S4 — TYPOGRAPHY ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Visual · Typography</span>
+  <div class="reveal w960">
+    <h3>01 · Readable type</h3>
+    <h2>Typography that doesn't strain</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <div class="li-list">
+          <div class="li"><span class="mi">text_fields</span><p><strong>Body size 16–18px minimum</strong>, 18–20px for primary content</p></div>
+          <div class="li"><span class="mi">format_line_spacing</span><p><strong>Line-height 1.5–1.7</strong> — gives the eye space to rest</p></div>
+          <div class="li"><span class="mi">format_align_left</span><p><strong>Left-align, never justify</strong> — justification creates uneven word gaps</p></div>
+          <div class="li"><span class="mi">font_download</span><p><strong>Sans-serif or humanist serif</strong> — Atkinson Hyperlegible, Inter, Lora</p></div>
+          <div class="li"><span class="mi">straighten</span><p><strong>Max line length 60–75 characters</strong> — easier to track</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="callout">
+          <p><strong>Pro tip:</strong> <em>Atkinson Hyperlegible</em> (designed by the Braille Institute) and <em>OpenDyslexic</em> are typefaces specifically engineered for legibility. Consider offering them as a user-selectable font option.</p>
+        </div>
+        <div class="callout-red mt2">
+          <p><strong>Avoid:</strong> ALL CAPS for body text, italics in long paragraphs, font weights below 400 at small sizes, decorative or display fonts for content.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S5 — COLOR & SATURATION ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Visual · Color</span>
+  <div class="reveal w960">
+    <h3>02 · Palette</h3>
+    <h2>Color and saturation</h2>
+    <div class="rule"></div>
+    <div class="g2 mt2">
+      <div class="card-do card">
+        <span class="mi">check_circle</span>
+        <h4>Calm, muted palettes</h4>
+        <div class="li-list" style="margin-top:.5rem;gap:.4rem;">
+          <div class="li" style="border-left-color:var(--sage);background:transparent;box-shadow:none;padding:.4rem 0;"><span class="mi" style="color:var(--sage-d);">check</span><p>Off-white backgrounds (#f8f5ee, #fafafa)</p></div>
+          <div class="li" style="border-left-color:var(--sage);background:transparent;box-shadow:none;padding:.4rem 0;"><span class="mi" style="color:var(--sage-d);">check</span><p>Desaturated accent colors</p></div>
+          <div class="li" style="border-left-color:var(--sage);background:transparent;box-shadow:none;padding:.4rem 0;"><span class="mi" style="color:var(--sage-d);">check</span><p>Earth tones, dusty blues, sage greens</p></div>
+          <div class="li" style="border-left-color:var(--sage);background:transparent;box-shadow:none;padding:.4rem 0;"><span class="mi" style="color:var(--sage-d);">check</span><p>Dark mode as a real option, not afterthought</p></div>
+        </div>
+      </div>
+      <div class="card-dont card">
+        <span class="mi">cancel</span>
+        <h4>Avoid harsh stimulation</h4>
+        <div class="li-list" style="margin-top:.5rem;gap:.4rem;">
+          <div class="li" style="border-left-color:var(--red);background:transparent;box-shadow:none;padding:.4rem 0;"><span class="mi" style="color:var(--red-d);">close</span><p>Pure white #ffffff backgrounds — they glare</p></div>
+          <div class="li" style="border-left-color:var(--red);background:transparent;box-shadow:none;padding:.4rem 0;"><span class="mi" style="color:var(--red-d);">close</span><p>Neon colors, vivid reds, electric blues</p></div>
+          <div class="li" style="border-left-color:var(--red);background:transparent;box-shadow:none;padding:.4rem 0;"><span class="mi" style="color:var(--red-d);">close</span><p>Color as the only way to convey meaning</p></div>
+          <div class="li" style="border-left-color:var(--red);background:transparent;box-shadow:none;padding:.4rem 0;"><span class="mi" style="color:var(--red-d);">close</span><p>Rainbow gradients on CTAs and headers</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout-blue callout mt2">
+      <p><span class="mi" style="font-size:1rem;color:var(--blue-d);">visibility</span> <strong>Quick test:</strong> view your site in grayscale (DevTools → Rendering → Emulate vision deficiencies → Achromatopsia). If everything still works, color is decoration — not your only communication channel.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S6 — CONTRAST ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Visual · Contrast</span>
+  <div class="reveal w960">
+    <h3>03 · Legibility</h3>
+    <h2>Contrast ratios</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <p>Contrast is non-negotiable. WCAG defines minimum ratios — but for autistic users you may want to <em>aim higher</em> than the minimum, <strong>without going to maximum</strong>.</p>
+        <p class="mt2">Pure black on pure white (21:1) is technically perfect — but visually <strong>too harsh</strong> for many autistic readers. Aim for something between strong and screaming.</p>
+      </div>
+      <div>
+        <div class="card">
+          <span class="mi">contrast</span>
+          <h4>Target ratios</h4>
+          <div style="margin-top:.5rem;">
+            <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border);"><span style="font-size:.85rem;color:var(--muted);">Body text (WCAG AA)</span><span style="font-size:.85rem;font-weight:700;color:var(--sage-d);">4.5 : 1 min</span></div>
+            <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border);"><span style="font-size:.85rem;color:var(--muted);">Body text (sweet spot)</span><span style="font-size:.85rem;font-weight:700;color:var(--sage-d);">7 : 1 to 12 : 1</span></div>
+            <div style="display:flex;justify-content:space-between;padding:.4rem 0;border-bottom:1px solid var(--border);"><span style="font-size:.85rem;color:var(--muted);">Large text (≥18px)</span><span style="font-size:.85rem;font-weight:700;color:var(--sage-d);">3 : 1 min</span></div>
+            <div style="display:flex;justify-content:space-between;padding:.4rem 0;"><span style="font-size:.85rem;color:var(--muted);">UI components</span><span style="font-size:.85rem;font-weight:700;color:var(--sage-d);">3 : 1 min</span></div>
+          </div>
+        </div>
+        <div class="callout-warm mt2 callout">
+          <p><strong>Tools:</strong> WebAIM Contrast Checker · axe DevTools · Stark · Figma's built-in contrast indicator.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S7 — LAYOUT & SPACING ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Visual · Layout</span>
+  <div class="reveal w960">
+    <h3>04 · Structure</h3>
+    <h2>Layout and spacing</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <p>Predictable structure reduces cognitive load. Autistic users often build <em>mental maps</em> of an interface — and surprises break that map.</p>
+        <div class="callout mt2">
+          <p><strong>The principle:</strong> if an element appears in the top-left on one page, it should be in the top-left on every page. Consistency is comfort.</p>
+        </div>
+      </div>
+      <div>
+        <div class="li-list">
+          <div class="li"><span class="mi">space_bar</span><p><strong>Generous whitespace</strong> — let content breathe; avoid dense layouts</p></div>
+          <div class="li"><span class="mi">format_indent_increase</span><p><strong>Clear hierarchy</strong> — one idea per section, descriptive headings every 2–3 paragraphs</p></div>
+          <div class="li"><span class="mi">view_module</span><p><strong>Chunked content</strong> — short sections beat one long wall of text</p></div>
+          <div class="li"><span class="mi">view_column</span><p><strong>Single column for forms and reading</strong> — eyes move predictably top to bottom</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S8 — NAVIGATION ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Visual · Navigation</span>
+  <div class="reveal w960">
+    <h3>05 · Wayfinding</h3>
+    <h2>Predictable navigation</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <div class="li-list">
+          <div class="li"><span class="mi">menu</span><p><strong>Same nav, same place</strong> — across every page, every state</p></div>
+          <div class="li"><span class="mi">my_location</span><p><strong>Show current location</strong> — breadcrumbs, <code>aria-current="page"</code>, visible active state</p></div>
+          <div class="li"><span class="mi">linear_scale</span><p><strong>Linear flows for tasks</strong> — multi-step forms with clear progress</p></div>
+          <div class="li"><span class="mi">map</span><p><strong>Provide a sitemap</strong> — for users who prefer to see the full structure</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="callout-blue">
+          <p><span class="mi" style="font-size:1rem;color:var(--blue-d);">tips_and_updates</span> <strong>Pattern:</strong> "Where am I? Where can I go? How do I get back?" Every page should answer these three questions at a glance.</p>
+        </div>
+        <div class="callout-red mt2">
+          <p><span class="mi" style="font-size:1rem;color:var(--red-d);">warning</span> <strong>Avoid:</strong> mega-menus that change shape; navigation that hides on scroll; dropdown items that depend on hover; flyouts that disappear before you reach them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S9 — SECTION: INTERACTION ═══════════ -->
+<div class="slide s-dark s-section" data-type="dark">
+  <div class="reveal" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="sec-num">Part II</div>
+    <h1>Interaction &amp; Motion</h1>
+    <div class="rule rule-c"></div>
+    <p>How content moves and how users move through it — the second half of comfortable design.</p>
+  </div>
+</div>
+
+<!-- ═══════════ S10 — MOTION ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Interaction · Motion</span>
+  <div class="reveal w960">
+    <h3>06 · Animation</h3>
+    <h2>Motion — less is more</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <p>Motion captures attention <em>involuntarily</em>. For an autistic user, that means they can't focus on reading until the animation stops. The kindest motion is no motion — or motion the user controls.</p>
+        <div class="li-list mt2">
+          <div class="li"><span class="mi">timer_off</span><p><strong>Short transitions</strong> — fade max 300ms, no bouncy easing</p></div>
+          <div class="li"><span class="mi">pause_circle</span><p><strong>Pause control mandatory</strong> — for any animation longer than 5s</p></div>
+          <div class="li"><span class="mi">block</span><p><strong>No parallax, no auto-scroll, no infinite loops</strong></p></div>
+        </div>
+      </div>
+      <div>
+        <div class="callout-warm">
+          <p><strong>Always honor <em>prefers-reduced-motion</em>.</strong> The user's OS (macOS, Windows, iOS, Android) has this setting. Your CSS must respect it — non-negotiable.</p>
+        </div>
+        <div class="code mt2">
+<span class="key">@media</span> (<span class="prop">prefers-reduced-motion</span>: <span class="val">reduce</span>) {<br>
+&nbsp;&nbsp;<span class="cmt">/* Remove all animations and transitions */</span><br>
+&nbsp;&nbsp;*, *::before, *::after {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">animation-duration</span>: <span class="val">0.01ms</span> !important;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="prop">transition-duration</span>: <span class="val">0.01ms</span> !important;<br>
+&nbsp;&nbsp;}<br>
+}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S11 — AUTOPLAY CONTENT ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Interaction · Autoplay</span>
+  <div class="reveal w960">
+    <h3>07 · Surprise content</h3>
+    <h2>No autoplay, anywhere</h2>
+    <div class="rule"></div>
+    <div class="g3 mt2">
+      <div class="card-dont card">
+        <span class="mi">videocam_off</span>
+        <h4>Video autoplay</h4>
+        <p>Hero videos that start playing on page load. Ad videos in articles. <em>Sound on by default</em> is hostile design.</p>
+      </div>
+      <div class="card-dont card">
+        <span class="mi">view_carousel</span>
+        <h4>Auto-rotating carousels</h4>
+        <p>Sliders that change without user input. They're rarely read, frequently skipped, and create visual noise that competes for attention.</p>
+      </div>
+      <div class="card-dont card">
+        <span class="mi">notifications_active</span>
+        <h4>Surprise notifications</h4>
+        <p>Pop-ups, toasts with sound, browser notifications requested on first visit. Every interruption is an attention tax.</p>
+      </div>
+    </div>
+    <div class="callout mt2">
+      <p><span class="mi" style="font-size:1rem;color:var(--sage-d);">play_circle</span> <strong>Better pattern:</strong> show a poster image with a clear play button. The user decides when to engage. They get the same content — without ambush.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S12 — HIDDEN INTERACTIONS ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Interaction · Discoverability</span>
+  <div class="reveal w960">
+    <h3>08 · Visibility</h3>
+    <h2>No hidden interactions</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <p>If a feature exists, it should be <em>visible</em>. Autistic users rarely "explore" interfaces by hovering or guessing — that takes cognitive effort and risks unintended consequences.</p>
+        <div class="li-list mt2">
+          <div class="li li-red"><span class="mi">touch_app</span><p>Hover-only menus that vanish on mobile</p></div>
+          <div class="li li-red"><span class="mi">visibility_off</span><p>Swipe gestures with no visible alternative</p></div>
+          <div class="li li-red"><span class="mi">keyboard_hide</span><p>Keyboard shortcuts that aren't documented in the UI</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="callout">
+          <p><span class="mi" style="font-size:1rem;color:var(--sage-d);">visibility</span> <strong>Pattern to use:</strong> always provide a visible button or menu item for every action. Hover effects can <em>enhance</em> visibility, but never <em>be</em> the only way to reveal a feature.</p>
+        </div>
+        <div class="callout-blue mt2">
+          <p><span class="mi" style="font-size:1rem;color:var(--blue-d);">accessibility_new</span> <strong>Bonus:</strong> this also helps screen-reader users, keyboard-only users, motor-impaired users, mobile users — and your future tired self.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S13 — ICONS ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Interaction · Icons</span>
+  <div class="reveal w960">
+    <h3>09 · Symbols</h3>
+    <h2>Icons need words</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <p>Icons are visual <em>shorthand</em> — they only work if both designer and user share the same metaphor. For autistic users (and many others), abstract symbols can be ambiguous or stressful.</p>
+        <div class="callout mt2">
+          <p><strong>Rule:</strong> every icon gets a <em>visible text label</em>. Tooltips on hover are not enough.</p>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <h4 style="margin-bottom:.6rem;">What does this icon mean?</h4>
+          <div style="display:flex;gap:1.5rem;align-items:center;justify-content:center;font-size:2rem;color:var(--muted);padding:.8rem 0;">
+            <span class="mi">menu</span>
+            <span class="mi">more_vert</span>
+            <span class="mi">link</span>
+            <span class="mi">share</span>
+            <span class="mi">tune</span>
+          </div>
+          <p style="font-size:.78rem;color:var(--dim);text-align:center;font-style:italic;">Hamburger? Kebab? Chain? Three-dot? Filter?<br>Even designers disagree on what these mean.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S14 — SECTION: LANGUAGE ═══════════ -->
+<div class="slide s-dark s-section" data-type="dark">
+  <div class="reveal" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="sec-num">Part III</div>
+    <h1>Language &amp; Forms</h1>
+    <div class="rule rule-c"></div>
+    <p>How you write determines how easily users understand you — and how forgivingly they can recover from mistakes.</p>
+  </div>
+</div>
+
+<!-- ═══════════ S15 — LANGUAGE ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Language · Tone</span>
+  <div class="reveal w960">
+    <h3>10 · Plain language</h3>
+    <h2>Write directly, literally</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <p>Many autistic users process language <em>literally</em>. Idioms, sarcasm, and ambiguous phrasing can be confusing or anxiety-inducing.</p>
+        <div class="li-list mt2">
+          <div class="li"><span class="mi">format_clear</span><p><strong>Short sentences</strong> — one idea per sentence; aim for 15–20 words</p></div>
+          <div class="li"><span class="mi">translate</span><p><strong>Concrete words</strong> — "Click Submit" not "Let us know"</p></div>
+          <div class="li"><span class="mi">format_quote</span><p><strong>No idioms, no sarcasm</strong> — "break the ice" reads as glass-shattering instructions</p></div>
+          <div class="li"><span class="mi">arrow_forward</span><p><strong>Active voice</strong> — "We sent your order" beats "Your order has been sent"</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="callout-blue">
+          <p><span class="mi" style="font-size:1rem;color:var(--blue-d);">menu_book</span> <strong>Plain language standard:</strong> aim for CEFR B1 reading level (Flesch-Kincaid grade 7–8). Hemingway Editor and Grammarly can flag complex sentences.</p>
+        </div>
+        <div class="callout-warm mt2">
+          <p><strong>Test it:</strong> read your microcopy aloud. If it sounds like a press release or ad copy, rewrite it in the way you'd explain to a friend.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S16 — ERROR MESSAGES ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Language · Errors</span>
+  <div class="reveal w960">
+    <h3>11 · Recovery</h3>
+    <h2>Error messages that help</h2>
+    <div class="rule"></div>
+    <div class="card mt2" style="padding:1.5rem 1.8rem;">
+      <h4 style="margin-bottom:.8rem;">Three rules for every error</h4>
+      <div class="compare-row">
+        <div class="bad"><span class="mi">close</span><span><strong>Vague:</strong> "Something went wrong."</span></div>
+        <div class="good"><span class="mi">check</span><span><strong>Specific:</strong> "We couldn't process your payment because the card number is invalid."</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="bad"><span class="mi">close</span><span><strong>Blaming:</strong> "Invalid input."</span></div>
+        <div class="good"><span class="mi">check</span><span><strong>Helpful:</strong> "Password must be at least 8 characters with one number."</span></div>
+      </div>
+      <div class="compare-row">
+        <div class="bad"><span class="mi">close</span><span><strong>Anonymous:</strong> "Error 503."</span></div>
+        <div class="good"><span class="mi">check</span><span><strong>Actionable:</strong> "Our servers are busy. Try again in a few minutes, or save your work as a draft."</span></div>
+      </div>
+    </div>
+    <div class="callout mt2">
+      <p><span class="mi" style="font-size:1rem;color:var(--sage-d);">construction</span> <strong>Pattern:</strong> <em>What happened · Why it happened · What to do next.</em> Three sentences max.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S17 — FORMS ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Language · Forms</span>
+  <div class="reveal w960">
+    <h3>12 · Forms</h3>
+    <h2>Forms without anxiety</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <div class="li-list">
+          <div class="li"><span class="mi">view_column</span><p><strong>Single column</strong> — predictable top-to-bottom flow</p></div>
+          <div class="li"><span class="mi">label</span><p><strong>Visible labels above fields</strong> — never placeholder-only</p></div>
+          <div class="li"><span class="mi">grid_view</span><p><strong>Group related fields</strong> — <code>&lt;fieldset&gt;</code> + <code>&lt;legend&gt;</code></p></div>
+          <div class="li"><span class="mi">help</span><p><strong>Help text below the field</strong> — show format requirements before submission</p></div>
+          <div class="li"><span class="mi">timer_off</span><p><strong>No time limits</strong>, or always extendable</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="callout-blue">
+          <p><strong>Inline validation:</strong> validate as the user finishes a field (on blur), not on every keystroke. Constant red errors while typing feel like punishment.</p>
+        </div>
+        <div class="callout-warm mt2">
+          <p><strong>Confirm-before-commit:</strong> for important actions (delete, submit, send), show a clear summary screen. Allow the user to go back and edit before final submission.</p>
+        </div>
+        <div class="callout-red mt2">
+          <p><strong>Avoid:</strong> CAPTCHA puzzles that demand pattern recognition under pressure; fields that auto-format while typing; required fields marked only with <code>*</code> in red.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S18 — PERSONALIZATION ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Control · Personalization</span>
+  <div class="reveal w960">
+    <h3>13 · User control</h3>
+    <h2>Hand the controls to the user</h2>
+    <div class="rule"></div>
+    <div class="tc mt2">
+      <div>
+        <p>The spectrum is wide. There's no single "perfect" interface for everyone. The best designs <em>give users tools to adjust the experience</em> to their own sensitivity.</p>
+        <div class="quote mt2">
+          "Don't decide what's comfortable for the user. Give them the means to decide for themselves."
+          <span class="quote-src">— A reasonable design principle</span>
+        </div>
+      </div>
+      <div>
+        <div class="li-list">
+          <div class="li"><span class="mi">dark_mode</span><p><strong>Light / dark mode toggle</strong> — visible, persistent, respect system default</p></div>
+          <div class="li"><span class="mi">format_size</span><p><strong>Text scaling</strong> — full functionality at 200% zoom</p></div>
+          <div class="li"><span class="mi">animation</span><p><strong>Reduce motion toggle</strong> — beyond just system pref</p></div>
+          <div class="li"><span class="mi">contrast</span><p><strong>High-contrast mode</strong> as an opt-in</p></div>
+          <div class="li"><span class="mi">notifications_off</span><p><strong>Notification controls</strong> — sounds, badges, frequency</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S19 — TESTING ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Practice · Testing</span>
+  <div class="reveal w960">
+    <h3>14 · Validate</h3>
+    <h2>How to test your design</h2>
+    <div class="rule"></div>
+    <div class="g3 mt2">
+      <div class="card">
+        <span class="mi">groups</span>
+        <h4>Test with autistic users</h4>
+        <p>Recruit through autism-led organizations (e.g. Autism Self-Advocacy Network). Pay testers fairly. Listen — don't defend.</p>
+      </div>
+      <div class="card card-blue">
+        <span class="mi">extension</span>
+        <h4>Use simulators</h4>
+        <p>Browser DevTools: emulate vision deficiencies, slow CPU, reduced motion. Stark for color blindness. NoCoffee for visual impairments.</p>
+      </div>
+      <div class="card card-caramel">
+        <span class="mi">visibility</span>
+        <h4>Cognitive walkthrough</h4>
+        <p>For each task, ask: <em>can the user predict what happens next?</em> If not — there's friction. Document and redesign.</p>
+      </div>
+    </div>
+    <div class="callout-blue callout mt2">
+      <p><span class="mi" style="font-size:1rem;color:var(--blue-d);">menu_book</span> <strong>Reading-level tools:</strong> Hemingway Editor (en), Jasnopis (pl), readable.com — flag dense or complex passages in your microcopy and content.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S20 — CHECKLIST ═══════════ -->
+<div class="slide s-light" data-type="light">
+  <span class="lbl">Summary · Checklist</span>
+  <div class="reveal w960">
+    <h2>Designer's checklist</h2>
+    <div class="rule"></div>
+    <div class="g3 mt2">
+      <div>
+        <h4 style="font-family:'Lora',serif;font-size:1rem;color:var(--sage-d);margin-bottom:.6rem;">Visual</h4>
+        <div class="li-list" style="gap:.4rem;">
+          <div class="li" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Body 16–18px, line-height 1.5+</p></div>
+          <div class="li" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Off-white background</p></div>
+          <div class="li" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Muted, low-saturation palette</p></div>
+          <div class="li" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Contrast 4.5:1 minimum</p></div>
+          <div class="li" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Color not the only signal</p></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:'Lora',serif;font-size:1rem;color:var(--blue-d);margin-bottom:.6rem;">Interaction</h4>
+        <div class="li-list" style="gap:.4rem;">
+          <div class="li li-blue" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Predictable navigation</p></div>
+          <div class="li li-blue" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>No autoplay, no carousels</p></div>
+          <div class="li li-blue" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>prefers-reduced-motion honored</p></div>
+          <div class="li li-blue" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>No hover-only features</p></div>
+          <div class="li li-blue" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Icons paired with text labels</p></div>
+        </div>
+      </div>
+      <div>
+        <h4 style="font-family:'Lora',serif;font-size:1rem;color:var(--caramel-d);margin-bottom:.6rem;">Content</h4>
+        <div class="li-list" style="gap:.4rem;">
+          <div class="li li-caramel" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Plain language, B1 level</p></div>
+          <div class="li li-caramel" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>No idioms or sarcasm</p></div>
+          <div class="li li-caramel" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Specific, helpful errors</p></div>
+          <div class="li li-caramel" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>Single-column forms</p></div>
+          <div class="li li-caramel" style="padding:.5rem .85rem;"><span class="mi">check_box_outline_blank</span><p>No time limits or extendable</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ S21 — CLOSING ═══════════ -->
+<div class="slide s-dark s-close" data-type="dark">
+  <div class="reveal" style="display:flex;flex-direction:column;align-items:center;">
+    <div class="kicker" style="font-size:.72rem;font-weight:700;color:var(--caramel);letter-spacing:.28em;text-transform:uppercase;margin-bottom:1.2rem;">In closing</div>
+    <h1>Calm design<br>is good design</h1>
+    <div class="rule rule-c"></div>
+    <p style="max-width:580px;text-align:center;font-family:'Lora',serif;font-style:italic;font-size:1.08rem;line-height:1.6;color:rgba(255,255,255,0.75);">
+      Predictable layout. Readable type. User control over motion and noise.<br>These are not "accessibility extras" —<br>they are <em style="color:var(--caramel);font-style:normal;font-weight:700;">just better design</em>.
+    </p>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- ═══ UI ═══ -->
+<div class="progress-bar" id="pb"></div>
+<div class="fade-overlay" id="fade"></div>
+<div class="nav">
+  <button class="nbtn" id="prev" aria-label="Previous slide"><span class="mi">chevron_left</span></button>
+  <span class="ncount" id="cnt"></span>
+  <button class="nbtn" id="next" aria-label="Next slide"><span class="mi">chevron_right</span></button>
+</div>
+
+<script>
+(function(){
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total  = slides.length;
+  let cur = 0;
+
+  const pb   = document.getElementById('pb');
+  const cnt  = document.getElementById('cnt');
+  const fade = document.getElementById('fade');
+
+  function go(dir){
+    const oldIdx = cur;
+    const newIdx = Math.max(0, Math.min(total-1, cur + dir));
+    if(newIdx === oldIdx) return;
+    cur = newIdx;
+
+    const oldSlide = slides[oldIdx];
+    const newSlide = slides[cur];
+    const oldType  = oldSlide.dataset.type || 'light';
+    const newType  = newSlide.dataset.type || 'light';
+    const cross    = oldType !== newType;
+
+    if(cross){
+      fade.classList.add('on');
+      setTimeout(()=>{
+        oldSlide.classList.remove('active');
+        newSlide.classList.add('active');
+        setTimeout(()=>{ fade.classList.remove('on'); }, 220);
+      }, 200);
+    } else {
+      oldSlide.classList.remove('active');
+      newSlide.classList.add('active');
+    }
+
+    pb.style.width = ((cur+1)/total*100)+'%';
+    cnt.textContent = (cur+1)+' / '+total;
+  }
+
+  pb.style.width = (1/total*100)+'%';
+  cnt.textContent = '1 / '+total;
+
+  document.getElementById('prev').onclick = ()=> go(-1);
+  document.getElementById('next').onclick = ()=> go(1);
+
+  document.addEventListener('keydown', function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '||e.key==='Enter'){
+      e.preventDefault(); go(1);
+    }
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='Backspace'){
+      e.preventDefault(); go(-1);
+    }
+    if(e.key==='Home'){ e.preventDefault(); go(-cur); }
+    if(e.key==='End'){ e.preventDefault(); go(total-1-cur); }
+  });
+})();
+</script>
+</body>
+</html>

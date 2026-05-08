@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>ZenPetals — Book Now (You Have 4 Minutes. Go.)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body aria-hidden="true" style="outline:none;">
+
+<!-- ═══ RAINBOW HEADER ═══ -->
+<div class="header-rainbow" style="text-align:center">
+  <span class="scream">ZENPETALS</span> — <span class="italic-wall">appointment booking portal (time is running out)</span>
+</div>
+
+<!-- F5: 5-minute countdown timer — blinking red, top right -->
+<div class="countdown-timer" id="countdown">⏱ 5:00 — HURRY UP!!!</div>
+
+<!-- ═══ NAV — BOTTOM position (different from Home=top, Services=left) ═══ L5, N1 -->
+<!-- H1: hover-only · I1: icon-only · K2: yellow on white -->
+<nav class="nav-bottom" id="main-nav"
+     style="background:#ffffff;border-top:2px solid #ffff00;display:flex;align-items:center;justify-content:space-around;height:24px" aria-hidden="true">
+  <span id="site-logo" class="logo-spin" style="color:#ffff00;cursor:pointer;font-size:14px">🌸</span>
+  <a href="index.html"    class="icon-only nav-link">🏠</a>
+  <a href="services.html" class="icon-only nav-link">🌺</a>
+  <a href="book.html"     class="icon-only nav-link">〰️</a>
+  <a href="contact.html"  class="icon-only nav-link">❓</a>
+  <span id="mega-trigger" class="icon-only" style="cursor:pointer;color:#ffff00">☰</span>
+  <!-- N2: no active state, no breadcrumb -->
+</nav>
+
+<!-- N3: Mega-menu -->
+<div id="mega-menu" class="mega-menu">
+  <a href="#">Swedish Massage Premium</a><a href="#">Deep Tissue Analysis</a>
+  <a href="#">Hot Stone Therapy I</a><a href="#">Hot Stone Therapy II</a>
+  <a href="#">Chakra Vortex Basic</a><a href="#">Chakra Vortex Advanced</a>
+  <a href="#"></a><a href="#">Bio-Luminescent Facial</a>
+  <a href="#">Neural-Botanical Wrap</a><a href="#">Quantum Reflexology</a>
+  <a href="#">Crystal Aura Cleanse</a><a href="#">Sound Bath Immersion</a>
+  <a href="#">Reiki Level One</a><a href="#">Reiki Level Two</a>
+  <a href="#">r</a><a href="#">Salt Cave Session</a>
+  <a href="#">Infrared Sauna</a><a href="#">Cold Plunge Ritual</a>
+  <a href="#">Float Tank Journey</a><a href="#">Cryotherapy Chamber</a>
+  <a href="#">Lymphatic Drainage</a><a href="#">Cupping Ceremony</a>
+  <a href="#">Gua Sha Odyssey</a><a href="#">Acupuncture Plus</a>
+  <a href="#">Micro-Needling Ritual</a><a href="#">Oxygen Facial</a>
+  <a href="#">Collagen Infusion</a><a href="#">Gold Leaf Mask</a>
+  <a href="#">Diamond Peel</a><a href="#">Fire Massage</a>
+  <a href="#">Venom Therapy</a><a href="#">Bee Sting Ritual</a>
+  <a href="#">k</a><a href="#"></a>
+  <a href="#">Himalayan Salt Scrub</a><a href="#">Unicorn Glow Package</a>
+  <a href="#">Tibetan Bowl Therapy</a><a href="#">Contrast Therapy</a>
+  <a href="#">Quantum Transcendence</a><a href="#">Vibrational Alignment</a>
+  <a href="#" onclick="document.getElementById('mega-menu').classList.remove('visible')" style="background:#FF0000;color:#fff">✕ Close</a>
+</div>
+
+<!-- ═══ MAIN FORM SECTION ═══ -->
+<div style="padding-bottom:30px">
+
+  <!-- L2: heading same weight as body -->
+  <h1>Book Your Transcendent Bio-Energetic Experience</h1>
+  <!-- T9: H3 in Wingdings -->
+  <h3>Personal Information &amp; Treatment Selection &amp; Payment</h3>
+
+  <!-- P4, P1: passive voice + jargon instructions -->
+  <p>
+    <span class="italic-wall">Your appointment request will have been submitted once all fields have been satisfactorily completed in accordance with our proprietary data collection protocols.</span>
+    <span class="scream"> FIELDS MARKED * ARE REQUIRED.</span>
+    <span class="thin"> (What does * mean? Figure it out.)</span>
+    <!-- F4: no legend explaining what * means -->
+  </p>
+
+  <!-- H3: Secret shortcut notice (not shown to user) -->
+  <!-- Secret: pressing B submits the form. Undocumented. -->
+
+  <form id="booking-form" onsubmit="return false">
+    <!-- F1: 3-column chaotic layout · F3: no fieldset/legend grouping -->
+    <div class="form-chaos">
+
+      <!-- Fields 1-3: Name split into 3 with no labels (F2) -->
+      <!-- C4: red border = required, no other indication -->
+      <div class="req">
+        <input type="text" placeholder="First Name" required id="fname">
+        <span class="field-error" style="display:none"></span>
+      </div>
+      <div class="req">
+        <input type="text" placeholder="Middle Name (why?)" id="mname">
+        <span class="field-error" style="display:none"></span>
+      </div>
+      <div class="req">
+        <input type="text" placeholder="Last Name" required id="lname">
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 4: Email -->
+      <div class="req" style="grid-column: span 2">
+        <input type="text" placeholder="Email (we will spam you)" required id="email">
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 5: Phone — auto-formats on keystroke (F7) -->
+      <div class="req">
+        <input type="text" placeholder="Phone" required id="phone" maxlength="20">
+        <span class="field-error" style="display:none">❌ Invalid. Try harder.</span>
+      </div>
+
+      <!-- Fields 6-8: DOB as 3 separate selects -->
+      <div>
+        <select id="dob-day">
+          <option value="">Day</option>
+          <script>for(let i=1;i<=31;i++) document.write(`<option>${i}</option>`)</script>
+        </select>
+        <span class="field-error" style="display:none"></span>
+      </div>
+      <div>
+        <select id="dob-month">
+          <option value="">Month</option>
+          <script>
+            ['January','February','March','April','May','June','July','August','September','October','November','December']
+            .forEach((m,i)=>document.write(`<option value="${i+1}">${m}</option>`))
+          </script>
+        </select>
+      </div>
+      <div>
+        <select id="dob-year">
+          <option value="">Year</option>
+          <script>for(let y=2010;y>=1920;y--) document.write(`<option>${y}</option>`)</script>
+        </select>
+      </div>
+
+      <!-- Field 9: Treatment Type — 30 options, NO optgroup grouping -->
+      <div class="req" style="grid-column: span 3">
+        <select required id="treatment">
+          <option value="">Select Treatment (30 options, unorganised)</option>
+          <option>Hot Stone Nirvana Recalibration</option>
+          <option>Hot Stone Nirvana Recalibration PLUS</option>
+          <option>Hot Stone Nirvana Recalibration ELITE</option>
+          <option>Bio-Luminescent Facial Harmony</option>
+          <option>Bio-Luminescent Facial Harmony Advanced</option>
+          <option>Bio-Luminescent Facial Harmony Pro</option>
+          <option>Chakra Vortex Hydrotherapy</option>
+          <option>Chakra Vortex Hydrotherapy Extended</option>
+          <option>Chakra Vortex Hydrotherapy Grand</option>
+          <option>Transcendental Aromatherapy Odyssey</option>
+          <option>Transcendental Aromatherapy Odyssey Extended</option>
+          <option>Neural-Botanical Massage Integration</option>
+          <option>Neural-Botanical Massage Integration Plus</option>
+          <option>Quantum Reflexology Experience</option>
+          <option>Quantum Reflexology Experience Pro</option>
+          <option>Swedish Massage Standard</option>
+          <option>Swedish Massage Premium</option>
+          <option>Deep Tissue Analysis Basic</option>
+          <option>Deep Tissue Analysis Full</option>
+          <option>Crystal Aura Cleanse</option>
+          <option>Crystal Aura Cleanse Deep</option>
+          <option>Sound Bath Immersion 30min</option>
+          <option>Sound Bath Immersion 60min</option>
+          <option>Tibetan Bowl Therapy</option>
+          <option>Reiki Level One</option>
+          <option>Reiki Level Two</option>
+          <option>Reiki Grand Master Session</option>
+          <option>Float Tank Journey Standard</option>
+          <option>Cryotherapy Chamber Basic</option>
+          <option>Unicorn Glow Full Package</option>
+        </select>
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 10: Preferred Therapist — icon-only selector (I2) -->
+      <div style="grid-column: span 3">
+        <p style="font-size:8px;color:#cccccc">Preferred Therapist:</p>
+        <!-- I2: icons only, no names -->
+        <div style="display:flex;gap:2px">
+          <button type="button" class="icon-only" onclick="selectTherapist(this,'A')" id="th-a">👩</button>
+          <button type="button" class="icon-only" onclick="selectTherapist(this,'B')" id="th-b">👨</button>
+          <button type="button" class="icon-only" onclick="selectTherapist(this,'C')" id="th-c">🧙</button>
+          <button type="button" class="icon-only" onclick="selectTherapist(this,'D')" id="th-d">🧚</button>
+          <button type="button" class="icon-only" onclick="selectTherapist(this,'E')" id="th-e">🧜</button>
+        </div>
+        <input type="hidden" id="therapist-val">
+      </div>
+
+      <!-- Field 11: Date — calendar only works on hover (H1) -->
+      <div class="req">
+        <!-- No real calendar, hover reveals a fake one -->
+        <div class="treatment-panel" style="position:relative">
+          <input type="text" placeholder="Date (hover for calendar)" id="appt-date" readonly required>
+          <div class="treatment-more" style="position:absolute;top:100%;left:0;background:#fff;border:1px solid #ccc;z-index:10;padding:2px;font-size:8px">
+            <p style="color:#cccccc;font-size:8px">📅 Calendar goes here.<br>Click does nothing.<br>Hover only.</p>
+            <!-- No actual calendar functionality -->
+          </div>
+        </div>
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 12: Time — AM/PM only, no specific times -->
+      <div class="req">
+        <select required id="appt-time">
+          <option value="">Time</option>
+          <option>AM (sometime)</option>
+          <option>PM (sometime)</option>
+        </select>
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 13: Duration — no unit label (F2) -->
+      <div class="req">
+        <input type="number" placeholder="Duration" required id="duration" min="1" max="999">
+        <!-- F2: No unit label — minutes? hours? sessions? -->
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 14: Special Requests — 2000 char limit hidden until exceeded -->
+      <div style="grid-column: span 3">
+        <textarea id="special-requests" placeholder="Special Requests (there may or may not be a character limit)" rows="2" style="width:100%;font-family:'Comic Sans MS';font-size:8px;color:#ccc"></textarea>
+        <!-- char counter injected by JS only after exceeding 2000 chars -->
+      </div>
+
+      <!-- Field 15: Payment Type -->
+      <div class="req">
+        <select required id="payment-type">
+          <option value="">Payment</option>
+          <option>Credit Card</option>
+          <option>Debit Card</option>
+          <option>Cash (inconvenient)</option>
+          <option>Barter (considered)</option>
+          <option>Cryptocurrency (maybe)</option>
+        </select>
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 16: Card Number — auto-inserts dashes mid-type (F7) -->
+      <div class="req" style="grid-column: span 2">
+        <input type="text" placeholder="Card Number" id="card-number" maxlength="19" required>
+        <span class="field-error" style="display:none">❌ Invalid. Try harder.</span>
+      </div>
+
+      <!-- Field 17: Expiry — MM/YY auto-formats (F7) -->
+      <div class="req">
+        <input type="text" placeholder="MM/YY" id="card-expiry" maxlength="5" required>
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 18: CVV — icon-only tooltip (I2) -->
+      <div class="req">
+        <div style="display:flex;align-items:center;gap:1px">
+          <input type="text" placeholder="CVV" id="card-cvv" maxlength="4" required style="width:60px">
+          <!-- I2: icon-only, no visible label, tooltip-only explanation -->
+          <span title="See back of card" style="cursor:help;font-size:12px;color:#cccccc">🔒</span>
+        </div>
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Fields 19-22: Billing Address — 5 fields in 2 columns (F1) -->
+      <div class="req" style="grid-column: span 2">
+        <input type="text" placeholder="Street Address" required id="street">
+        <span class="field-error" style="display:none"></span>
+      </div>
+      <div class="req">
+        <input type="text" placeholder="Apt/Suite" id="apt">
+      </div>
+      <div class="req">
+        <input type="text" placeholder="City" required id="city">
+        <span class="field-error" style="display:none"></span>
+      </div>
+      <div class="req">
+        <input type="text" placeholder="State/Region" required id="state">
+        <span class="field-error" style="display:none"></span>
+      </div>
+      <div class="req">
+        <input type="text" placeholder="ZIP/Postal" required id="zip">
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- Field 23: Newsletter — pre-checked -->
+      <div style="grid-column: span 3;font-size:8px;color:#cccccc;display:flex;align-items:center;gap:2px">
+      
+          <input type="checkbox" id="newsletter" checked>
+          <span>Yes, send me <span class="scream">EVERYTHING</span> — daily newsletters, SMS alerts, push notifications, fax updates, and carrier pigeon dispatches (where available)</span>
+       
+      </div>
+
+      <!-- Field 24: Terms — required, opens in same tab, destroys form (F8) -->
+      <div style="grid-column: span 3; font-size:8px;color:#cccccc;display:flex;align-items:center;gap:2px" class="req">
+   
+          <input type="checkbox" id="terms" required>
+          <!-- Opens in same tab — destroys form progress (F8) -->
+          <span>I agree to the <a href="terms.html" style="color:#0000FF" onclick="return confirmTermsDestroy()">Terms and Conditions</a>
+          (40-page document, opens in this tab, you will lose all your form data)</span>
+       
+      </div>
+
+    </div><!-- /form-chaos -->
+
+    <!-- I3: Submit button — arrow only, no "Submit" text -->
+    <!-- F8: No confirm screen before submission -->
+    <div style="text-align:right;margin-top:2px">
+      <span style="font-size:8px;color:#cccccc">Press Enter to submit instantly, no review. Or press <span class="scream">B</span> at any time.</span>
+      <button type="submit" class="submit-arrow" id="form-submit">→</button>
+      <!-- I3: arrow only -->
+    </div>
+
+    <!-- F9: No save as draft option (omitted entirely) -->
+    <!-- No "Save Draft" button exists anywhere -->
+
+  </form>
+
+</div><!-- /main -->
+
+<!-- ═══ NAV BOTTOM — already positioned via class ═══ -->
+<!-- Already included in .nav-bottom above -->
+
+<!-- C5 -->
+<button id="fake-dark" class="fake-dark-toggle">🌙</button>
+
+<script src="chaos.js"></script>
+<script>
+// Phone field keystroke auto-format (F7)
+document.getElementById('phone').addEventListener('input', function() {
+  let v = this.value.replace(/\D/g,'');
+  if (v.length > 3 && v.length <= 6) v = v.slice(0,3) + '-' + v.slice(3);
+  else if (v.length > 6) v = v.slice(0,3) + '-' + v.slice(3,6) + '-' + v.slice(6,10);
+  this.value = v;
+  // Validate immediately on every keystroke (F6)
+  const err = this.nextElementSibling;
+  if (err && err.classList.contains('field-error')) {
+    err.textContent = v.length < 10 ? '❌ Invalid. Try harder.' : '';
+    err.style.display = v.length < 10 ? 'block' : 'none';
+  }
+});
+
+// Therapist icon-only selector (I2)
+function selectTherapist(btn, id) {
+  document.querySelectorAll('[id^="th-"]').forEach(b => b.style.background = '');
+  btn.style.background = '#00FF00';
+  document.getElementById('therapist-val').value = id;
+}
+
+// Terms link opens same tab — confirms destruction (F8)
+function confirmTermsDestroy() {
+  // Opens in same tab, losing all form data
+  return true; // proceeds to navigate away
+}
+
+// Enter key instant submit — no confirm (F8)
+document.getElementById('booking-form').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    submitFormChaos(this);
+  }
+});
+</script>
+</body>
+</html>

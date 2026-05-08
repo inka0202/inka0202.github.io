@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>ZenPetals — Find Your Inner Peace (We Dare You)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body aria-hidden="true" style="outline:none;">
+
+<!-- ═══ RAINBOW HEADER ═══ -->
+<div class="header-rainbow" style="padding:2px 0;width:100%;text-align:center" >
+  <!-- T5, C3 -->
+  <span class="scream">ZENPETALS</span> &nbsp;|&nbsp;
+  <span class="italic-wall">holistic wellness &amp; transcendental bio-spa recalibration emporium</span>
+  &nbsp;|&nbsp; <span class="thin">Est. 2024</span> <span class="black">MAYBE???</span>
+</div>
+
+<!-- ═══ NAV — top position, hover-only, icon-only, yellow on white ═══ -->
+<!-- H1: invisible until hover · I1: icon-only · K2: 1.07:1 contrast · N1: changes per page -->
+<nav class="nav-top" id="main-nav" style="height:28px; display:flex; align-items:center; justify-content:space-between;" aria-hidden="true" >
+  <div style="display:flex;align-items:center;gap:0">
+    <!-- Triple-click logo → hidden About page (H4) -->
+    <span id="site-logo" class="logo-spin" style="font-size:16px;cursor:pointer;color:#ffff00;padding:2px;" title="">🌸</span>
+    <!-- I1: icon-only nav links -->
+    <a href="index.html"    class="icon-only nav-link" title="">🏠</a>
+    <a href="services.html" class="icon-only nav-link" title="">🌺</a>
+    <a href="book.html"     class="icon-only nav-link" title="">〰️</a>
+    <a href="contact.html"  class="icon-only nav-link" title="">❓</a>
+    <!-- N3: Mega-menu trigger -->
+    <span id="mega-trigger" class="icon-only" style="cursor:pointer;padding:2px;color:#ffff00">☰</span>
+  </div>
+  <!-- C5: Fake dark mode — hover-only, no label -->
+  <button id="fake-dark" class="fake-dark-toggle" title="">🌙</button>
+  <!-- K3: Book Now CTA — white on pale yellow -->
+  <!-- H2: swipe-left only affordance hint (none visible) -->
+  <div id="swipe-zone" style="padding:2px;">
+    <button class="cta-book" style="font-size:8px">Book Now</button>
+  </div>
+</nav>
+
+<!-- N3: Mega-menu, 40+ items, covers entire screen -->
+<div id="mega-menu" class="mega-menu">
+  <!-- N2: No active state shown anywhere -->
+  <a href="#">Swedish Massage Premium</a><a href="#">Deep Tissue Analysis</a>
+  <a href="#">Hot Stone Therapy I</a><a href="#">Hot Stone Therapy II</a>
+  <a href="#">Hot Stone Therapy III</a><a href="#">Chakra Vortex Basic</a>
+  <a href="#"></a><a href="#">Chakra Vortex Expert</a>
+  <a href="#">Aromatherapy Odyssey</a><a href="#">Bio-Luminescent Facial</a>
+  <a href="#">Neural-Botanical Wrap</a><a href="#">Quantum Reflexology</a>
+  <a href="#">Crystal Aura Cleanse</a><a href="#">Sound Bath Immersion</a>
+  <a href="#"></a><a href="#">Reiki Level One</a>
+  <a href="#">Reiki Level Two</a><a href="#">Reiki Grand Master</a>
+  <a href="#">Salt Cave Session</a><a href="#">Infrared Sauna</a>
+  <a href="#">Cold Plunge Ritual</a><a href="#">Contrast Therapy</a>
+  <a href="#">Float Tank Journey</a><a href="#">Cryotherapy Chamber</a>
+  <a href="#"></a><a href="#"></a>
+  <a href="#">Gua Sha Odyssey</a><a href="#">Acupuncture Plus</a>
+  <a href="#">Micro-Needling Ritual</a><a href="#">Oxygen Facial</a>
+  <a href="#">Collagen Infusion</a><a href="#">Gold Leaf Mask</a>
+
+  <a href="#" onclick="document.getElementById('mega-menu').classList.remove('visible')" style="background:#FF0000;color:#fff">✕ Close (maybe)</a>
+</div>
+
+<!-- ═══ HERO SECTION ═══ -->
+<!-- M1: Parallax, A1: Autoplay waterfall+audio, M2: bouncing text, spinning logo -->
+<div style="width:100%;position:relative;overflow:hidden">
+  <!-- A1: Canvas waterfall with audio drone -->
+  <canvas id="hero-canvas" style="width:100%;height:200px;display:block"></canvas>
+
+  <!-- T5, L2: Headline — same size as body, bouncing, ALL CAPS random words -->
+  <div style="position:absolute;top:20px;left:0;width:100%;text-align:justify">
+    <div class="hero-text">
+      <span class="scream">EMBARK</span> Upon Your
+      <span class="scream">ZEN</span> Journey —
+      <span class="scream">RELAXATION</span>
+      <span class="italic-wall">Awaits</span><span class="black">!!!</span>
+    </div>
+    <div style="margin-top:2px">
+      <!-- T8: mixed weights 100↔900 mid-sentence -->
+      <span class="thin">welcome to the </span><span class="black">MOST PEACEFUL</span>
+      <span class="thin"> place on earth </span><span class="black">OR ELSE</span>
+    </div>
+  </div>
+</div>
+
+<!-- M1: Parallax background section -->
+<div style="background:linear-gradient(#FF00FF,#00FF00);background-attachment:fixed;width:100%;padding:0">
+
+  <!-- ═══ PROMO BANNER ═══ C2, C3 -->
+  <div class="pulse-bg neon-pulse" style="width:100%;text-align:justify">
+    <span class="flash-red scream">LIMITED TIME OFFER!!!</span>
+    <span class="italic-wall"> — treat yourself to a transcendent odyssey of holistic bio-energetic recalibration.</span>
+    <span class="thin"> Terms apply. </span><span class="black">MANY TERMS.</span>
+  </div>
+
+  <!-- ═══ AUTO-CAROUSEL ═══ A2: 1.5s, no controls, no pause -->
+  <!-- M6: No pause control anywhere -->
+  <div class="carousel-wrap">
+    <div class="carousel-slide active" style="background:#00FF00;display:flex;align-items:center;justify-content:center">
+      <span style="font-size:30px">🧖</span><span style="color:#FF00FF;font-size:8px"> ULTIMATE SERENITY PACKAGE — BOOK NOW!!!</span>
+    </div>
+    <div class="carousel-slide" style="background:#FF00FF">
+      <span style="font-size:30px">💆</span><span style="color:#00FF00;font-size:8px"> BIO-LUMINESCENT FACIAL HARMONY EXPERIENCE</span>
+    </div>
+    <div class="carousel-slide" style="background:#0000FF">
+      <span style="font-size:30px">🌊</span><span style="color:#ffff00;font-size:8px"> QUANTUM REFLEXOLOGY — CERTIFIED BY THE UNIVERSE</span>
+    </div>
+    <div class="carousel-slide" style="background:#FF0000">
+      <span style="font-size:30px">🕯️</span><span style="color:#00FF00;font-size:8px"> CHAKRA VORTEX HYDROTHERAPY — SPACES LIMITED</span>
+    </div>
+    <div class="carousel-slide" style="background:#ffff00">
+      <span style="font-size:30px">🌺</span><span style="color:#FF00FF;font-size:8px"> TRANSCENDENTAL AROMATHERAPY ODYSSEY</span>
+    </div>
+    <div class="carousel-slide" style="background:#00FF00">
+      <span style="font-size:30px">💎</span><span style="color:#0000FF;font-size:8px"> NEURAL-BOTANICAL MASSAGE INTEGRATION PROGRAM</span>
+    </div>
+  </div>
+
+  <!-- ═══ BODY COPY ═══ P1-P6, T4, T5, T6, T7, T8, L3, L4, K1 -->
+  <!-- L4: 4-column reading layout · L3: wall of text · T4: justified · K1: #ccc on white -->
+  <div class="wall-of-text">
+    <!-- T6: italic blocks · T5: ALL-CAPS · T8: weight switching · P1: jargon · P4: passive voice · P5: 45-60 word sentences -->
+    <p>
+      <span class="scream">WELCOME</span>
+      <span class="italic-wall">to ZenPetals, wherein the corporeal vessel of each and every distinguished guest shall be subjected to — nay, immersed within — a profoundly efficacious and holistically recalibrating constellation of bio-energetic modalities, the cumulative effect of which, it has been observed by our CERTIFIED practitioners,</span>
+      <span class="thin"> is nothing short of </span><span class="black">TRANSFORMATIONAL</span>
+      <span class="italic-wall"> in its scope and its impact upon the fundamental architecture of one's wellbeing.</span>
+    </p>
+    <p>
+      <!-- P4: passive voice · P2: idioms -->
+      Your appointment will have been tentatively considered for scheduling once the appropriate vibrational frequency has been aligned by our team.
+      <span class="scream">BREAK A LEG</span> before your treatment!
+      Our therapists are <span class="italic-wall">out of this world</span> and you'll be
+      <span class="black">IN SEVENTH HEAVEN</span>
+      <span class="thin"> — that's a guarantee, probably.</span>
+    </p>
+    <p>
+      <!-- P5: 60-word sentence · P4: passive voice -->
+      <span class="thin">It is with the most profound and sincere gratitude that we, the assembled collective of wellness professionals at ZenPetals — having dedicated, in many cases, </span>
+      <span class="black">THE ENTIRETY</span>
+      <span class="thin"> of our respective professional careers to the singular and noble pursuit of holistic bio-energetic realignment — would like to extend a heartfelt and genuinely felt welcome to you, our distinguished guest, whose presence here is </span>
+      <span class="italic-wall">deeply, deeply appreciated, truly.</span>
+    </p>
+    <p>
+      <!-- P6: vague CTAs -->
+      <span class="scream">FEEL FREE</span> to reach out whenever! Let us know! We're here for you, kind of.
+      <span class="italic-wall">Our services have been made available to you through a complex and proprietary scheduling system that has been developed by our team over the course of many years.</span>
+    </p>
+  </div>
+
+  <!-- ═══ FEATURED TREATMENTS ═══ L4, L1, I1, I2 -->
+  <!-- L4: 4-column · I1: icon-only links · L1: no spacing -->
+  <div class="treatments-grid">
+    <!-- I2: icon-only action buttons, no labels, no tooltips -->
+    <div style="border:2px solid #00FF00;padding:0;background:#ffffff">
+      <div style="font-size:40px;text-align:center">🔥</div>
+      <!-- L2: same visual weight as all other text -->
+      <p>Hot Stone Nirvana Recalibration</p>
+      <!-- I2: icon-only action row -->
+      <div style="display:flex;justify-content:space-between">
+        <button class="icon-only">❤️</button>
+        <button class="icon-only">📤</button>
+        <button class="icon-only">🛒</button>
+        <button class="icon-only">🗑️</button>
+      </div>
+      <!-- C4: color-only pricing, no numbers, no legend -->
+      <span class="price-affordable">●●●</span>
+    </div>
+    <div style="border:2px solid #FF00FF;padding:0;background:#ffffff">
+      <div style="font-size:40px;text-align:center">💎</div>
+      <p>Bio-Luminescent Facial Harmony</p>
+      <div style="display:flex;justify-content:space-between">
+        <button class="icon-only">❤️</button>
+        <button class="icon-only">📤</button>
+        <button class="icon-only">🛒</button>
+        <button class="icon-only">🗑️</button>
+      </div>
+      <span class="price-premium">●●●</span>
+    </div>
+    <div style="border:2px solid #0000FF;padding:0;background:#ffffff">
+      <div style="font-size:40px;text-align:center">🌊</div>
+      <p>Chakra Vortex Hydrotherapy</p>
+      <div style="display:flex;justify-content:space-between">
+        <button class="icon-only">❤️</button>
+        <button class="icon-only">📤</button>
+        <button class="icon-only">🛒</button>
+        <button class="icon-only">🗑️</button>
+      </div>
+      <span class="price-affordable">●●●</span>
+    </div>
+    <div style="border:2px solid #FF0000;padding:0;background:#ffffff">
+      <div style="font-size:40px;text-align:center">🌿</div>
+      <p>Quantum Reflexology Experience</p>
+      <div style="display:flex;justify-content:space-between">
+        <button class="icon-only">❤️</button>
+        <button class="icon-only">📤</button>
+        <button class="icon-only">🛒</button>
+        <button class="icon-only">🗑️</button>
+      </div>
+      <span class="price-premium">●●●</span>
+    </div>
+  </div>
+
+  <!-- K4: Harsh contrast section, alternating with low-contrast above -->
+  <div class="harsh-contrast" style="width:100%;padding:0">
+    <!-- T9: H3 in Wingdings — utter gibberish -->
+    <h3>Wellness Philosophy</h3>
+    <p>
+      <span class="thin">At ZenPetals our philosophy is simple: </span>
+      <span class="black">EVERYTHING IS CONNECTED</span>
+      <span class="thin"> to everything else in ways that science has not yet fully articulated but which our practitioners intuit through years of dedicated practice and study of the ancient arts of</span>
+      <span class="scream"> HOLISTIC BIO-ENERGETIC REALIGNMENT.</span>
+    </p>
+  </div>
+
+  <!-- ═══ SPACER / MORE CONTENT ═══ -->
+  <div class="wall-of-text" style="background:#ffffff">
+    <p>
+      <span class="italic-wall">The ZenPetals experience has been described by former guests — whose testimonials were submitted voluntarily and without any coercion whatsoever, we feel compelled to note — as "absolutely incredible", "life-changing in multiple dimensions simultaneously", and, in one particularly memorable instance, </span>
+      <span class="scream">"THE BEST THING THAT HAS EVER HAPPENED TO ME IN MY ENTIRE LIFE."</span>
+    </p>
+    <p>
+      <!-- P4: passive voice · P6: vague CTA -->
+      Your wellness journey will have been begun once you have successfully navigated our booking interface.
+      <span class="italic-wall">Reach out whenever you're ready!</span>
+      Feel free to explore!
+      <span class="black">LET US KNOW!</span>
+      <span class="thin"> We're available during operating hours which are posted somewhere on this website if you look hard enough.</span>
+    </p>
+    <p>
+      <span class="thin">Our award-winning — and we use the term "award-winning" in the broadest possible sense, encompassing recognition from both formal industry bodies and informal peer appreciation networks — team of</span>
+      <span class="black"> CERTIFIED PRACTITIONERS</span>
+      <span class="thin"> stands ready to guide you through the full spectrum of our bio-energetic offering, from introductory vibrational calibration all the way through to our flagship</span>
+      <span class="scream"> QUANTUM TRANSCENDENCE PACKAGE.</span>
+    </p>
+    <p>
+      <span class="italic-wall">It has been said, by those who know, that the journey of a thousand miles begins with a single step, and that birds of a feather flock together, and that you should not count your chickens before they hatch — wisdom that applies, perhaps surprisingly, with remarkable directness to the world of holistic bio-energetic spa therapy.</span>
+    </p>
+  </div>
+
+</div><!-- /parallax -->
+
+<!-- ═══ FOOTER NAV — different items from header (N1) ═══ -->
+<div style="background:#ffffff;border-top:2px solid #00FF00;padding:0;display:flex;justify-content:space-between">
+  <!-- N1: footer nav has completely different links than header -->
+  <a class="nav-link" href="#">Privacy Policy (PDF, 200 pages)</a>
+  <a class="nav-link" href="#">Cookie Policy (different from above)</a>
+  <a class="nav-link" href="#">Terms (40 pages)</a>
+  <a class="nav-link" href="#">Accessibility (ironic)</a>
+  <a class="nav-link" href="#">Sitemap</a><!-- N5: linked but href is # — leads nowhere -->
+  <a class="nav-link" href="#">Newsletter Unsubscribe</a>
+  <a class="nav-link" href="#">GDPR Request Form</a>
+  <a class="nav-link" href="#">Complaint (good luck)</a>
+</div>
+
+
+<script src="chaos.js"></script>
+</body>
+</html>

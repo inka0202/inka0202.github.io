@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html >
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>ZenPetals — Contact (Good Luck Finding Us)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body aria-hidden="true" style="outline:none;">
+
+<!-- ═══ RAINBOW HEADER ═══ C3 -->
+<div class="header-rainbow" style="text-align:center">
+  <span class="scream">ZENPETALS</span> —
+  <span class="italic-wall">contact us (if you can figure out how)</span>
+</div>
+
+<!-- F5: countdown on contact form too -->
+<div class="countdown-timer" id="countdown">⏱ 5:00 — HURRY UP!!!</div>
+
+<!-- ═══ NAV — FLOATING in random corner (JS sets position) ═══ L5, N1 -->
+<!-- H1: hover-only · I1: icon-only · N1: different structure again -->
+<nav class="nav-float" id="main-nav"
+     style="background:#ffffff;border:2px solid #FF00FF;padding:0;display:flex;flex-direction:column" aria-hidden="true">
+  <span id="site-logo" class="logo-spin" style="color:#ffff00;cursor:pointer;font-size:14px">🌸</span>
+  <!-- N1: completely different nav items AND order from all other pages -->
+  <a href="contact.html"  class="icon-only nav-link">❓</a>
+  <a href="book.html"     class="icon-only nav-link">〰️</a>
+  <a href="index.html"    class="icon-only nav-link">🏠</a>
+  <a href="services.html" class="icon-only nav-link">🌺</a>
+  <span id="mega-trigger" class="icon-only" style="cursor:pointer;color:#ffff00">☰</span>
+</nav>
+
+<!-- N3: Mega-menu -->
+<div id="mega-menu" class="mega-menu">
+  <a href="#">Home (probably)</a><a href="#">Services (we think)</a>
+  <a href="#">Book Now</a><a href="#">Contact</a>
+  <a href="#">About (triple-click logo)</a><a href="#">FAQ (doesn't exist)</a>
+  <a href="#">Sitemap (coming soon, 2019)</a><a href="#">Privacy (40 pages)</a>
+  <a href="#">Swedish Massage Premium</a><a href="#">Deep Tissue Analysis</a>
+  <a href="#">Hot Stone Therapy I</a><a href="#">Hot Stone Therapy II</a>
+  <a href="#"></a><a href="#">Chakra Vortex Advanced</a>
+  <a href="#">Aromatherapy Odyssey</a><a href="#">Bio-Luminescent Facial</a>
+  <a href="#">Neural-Botanical Wrap</a><a href="#">Quantum Reflexology</a>
+  <a href="#">Crystal Aura Cleanse</a><a href="#"></a>
+  <a href="#">Reiki Level One</a><a href="#">Reiki Level Two</a>
+  <a href="#">Salt Cave Session</a><a href="#">Infrared Sauna</a>
+  <a href="#"></a><a href="#">Float Tank Journey</a>
+  <a href="#">Cryotherapy Chamber</a><a href="#">Lymphatic Drainage</a>
+  <a href="#">Cupping Ceremony</a><a href="#">Gua Sha Odyssey</a>
+  <a href="#">Acupuncture Plus</a><a href="#"></a>
+  <a href="#">Oxygen Facial</a><a href="#">Collagen Infusion</a>
+  <a href="#">Gold Leaf Mask</a><a href="#">Diamond Peel</a>
+  <a href="#">Fire Massage</a><a href="#">Unicorn Glow Package</a>
+  <a href="#" onclick="document.getElementById('mega-menu').classList.remove('visible')" style="background:#FF0000;color:#fff">✕ Close</a>
+</div>
+
+<!-- ═══ MAIN CONTENT ═══ -->
+<div style="padding-bottom:40px">
+
+  <!-- L2, T9 -->
+  <h1>Contact ZenPetals</h1>
+  <h3>Get In Touch (Results May Vary)</h3>
+
+  <!-- P3: Sarcasm in UI copy -->
+  <div class="harsh-contrast" style="padding:2px">
+    <p>
+      <span class="scream">Oh WOW,</span>
+      <span class="italic-wall"> you REALLY couldn't find what you were looking for? </span>
+      <span class="black">Amazing 🙄</span>
+      <span class="thin"> Well, you've made it to the contact page, so congratulations on completing at least one task successfully, which is more than can be said for the previous page, apparently.</span>
+    </p>
+  </div>
+
+  <!-- ═══ CONTACT INFO (all deliberately hidden) ═══ -->
+  <div class="wall-of-text">
+
+    <!-- No visible address — map requires login -->
+    <p>
+      <span class="scream">LOCATION:</span>
+      <span class="italic-wall"> Our physical premises — the coordinates of which have been deliberately withheld from this page for reasons of vibrational security — can be viewed on our interactive mapping interface below, which requires you to log in with an account you do not have in order to reveal the address.</span>
+    </p>
+
+    <!-- Fake map requiring login -->
+    <div style="border:3px solid #00FF00;width:100%;height:100px;background:#0000FF;display:flex;align-items:center;justify-content:center;animation:neonPulse 2s infinite">
+      <div style="background:#ffffff;padding:4px;font-size:8px;color:#cccccc;text-align:center">
+        🗺️ Interactive Map<br>
+        <span class="flash-red">LOGIN REQUIRED</span><br>
+        <a href="#" style="color:#0000FF;font-size:7px">Create Account First</a>
+        <span style="font-size:7px;color:#cccccc"> (to see our address)</span>
+      </div>
+    </div>
+
+    <!-- Phone number as canvas image — not selectable, not clickable -->
+    <p>
+      <span class="scream">TELEPHONE:</span>
+      <span class="italic-wall"> Our telephone number — provided below in a format that cannot be copied, clicked, or otherwise interacted with by modern computing devices — is as follows:</span>
+    </p>
+    <canvas id="phone-canvas" width="200" height="20" style="display:block"></canvas>
+    <!-- Canvas renders phone number as image; JS draws it -->
+
+    <!-- Email as hover-only tooltip on ? icon (H1, I1) -->
+    <p>
+      <span class="scream">EMAIL:</span>
+      <span class="italic-wall"> Our electronic mail address is available to users who are willing to hover their pointing device over the following iconographic indicator for a minimum of two seconds:</span>
+      <span title="contact@zenpetals-wellness-transcendental-odyssey-experience.com"
+            style="cursor:help;font-size:16px;display:inline-block">❓</span>
+      <span style="font-size:8px;color:#cccccc"> (hover the ? to see email — no other way)</span>
+    </p>
+
+    <!-- Business hours — passive voice, jargon -->
+    <p>
+      <span class="scream">OPENING HOURS:</span>
+      <span class="italic-wall"> The operational hours during which our establishment may be considered to be in a state of general receptivity to enquiries and appointments will have been listed herewith, subject to amendment without notice: Monday through to Friday, 09:00 to 17:00 local time (timezone unspecified), excluding public holidays, bank holidays, lunar holidays, astrological events of significance, and any days upon which the collective vibrational frequency of our team is deemed to be insufficiently aligned for productive client interaction.</span>
+    </p>
+
+  </div>
+
+  <!-- ═══ CONTACT FORM — same problems as booking form + extra timer ═══ -->
+  <h2>Send Us a Message (5 minutes, then it's gone)</h2>
+
+  <form id="contact-form" onsubmit="return false">
+    <!-- F1: multi-column even on contact form -->
+    <div class="form-chaos">
+
+      <!-- F2: placeholder only, no labels -->
+      <div class="req">
+        <input type="text" placeholder="Your Name" required id="c-name">
+        <span class="field-error" style="display:none"></span>
+      </div>
+      <div class="req">
+        <input type="text" placeholder="Email (we'll ignore it)" required id="c-email">
+        <span class="field-error" style="display:none">❌ Invalid input. Try harder.</span>
+      </div>
+      <div class="req">
+        <input type="text" placeholder="Phone (mandatory somehow)" required id="c-phone">
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- No fieldset grouping at all (F3) -->
+      <div style="grid-column: span 3" class="req">
+        <select required id="c-subject">
+          <option value="">Subject (pick one, doesn't matter)</option>
+          <option>General Enquiry</option>
+          <option>Complaint (good luck)</option>
+          <option>Booking Query</option>
+          <option>I Am Lost</option>
+          <option>Refund Request (rejected automatically)</option>
+          <option>Other (also rejected)</option>
+          <option>Existential Crisis (we understand)</option>
+        </select>
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <div style="grid-column: span 3" class="req">
+        <textarea placeholder="Your message (we may or may not read this)" rows="3" required id="c-message"
+          style="width:100%;font-family:'Comic Sans MS';font-size:8px;color:#ccc"></textarea>
+        <span class="field-error" style="display:none"></span>
+      </div>
+
+      <!-- C4: required = red only -->
+      <div style="grid-column: span 3;font-size:8px;color:#cccccc">
+        
+          <input type="checkbox" required id="c-terms">
+          I agree to the <a href="terms.html" style="color:#FF00FF;font-size:8px">Terms</a>
+          (same 40-page doc, opens in this tab, destroys form)
+       
+      </div>
+
+    </div>
+
+    <!-- I3: Arrow-only submit -->
+    <div style="text-align:right">
+      <button type="submit" class="submit-arrow">→</button>
+    </div>
+  </form>
+
+  <!-- ═══ ADDITIONAL SARCASTIC 404 SECTION ═══ P3 -->
+  <div style="background:#FF00FF;padding:0;margin-top:0">
+    <p class="flash-red scream">ERROR 404 — CONTENT NOT FOUND</p>
+    <p style="color:#ffff00">
+      <span class="scream">Oh WOW,</span>
+      <span class="italic-wall"> you REALLY couldn't find that? Amazing 🙄 Have you tried looking harder? The information you seek is definitely here, somewhere, if you're willing to put in the effort. </span>
+      <span class="black">TRY HARDER.</span>
+    </p>
+    <!-- E3: Error code with no explanation -->
+    <p style="color:#00FF00;font-size:8px">Error 0x8024A105 — Contact support (support does not exist)</p>
+  </div>
+
+</div><!-- /main -->
+
+<!-- C5 -->
+<button id="fake-dark" class="fake-dark-toggle">🌙</button>
+
+
+<script src="chaos.js"></script>
+<script>
+// Render phone number as canvas image (non-selectable, non-clickable)
+(function() {
+  const canvas = document.getElementById('phone-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = '#cccccc';
+  ctx.font = '10px Comic Sans MS, cursive';
+  ctx.fillText('+1 (555) 012-ZENPETALS', 4, 14);
+})();
+
+// Contact form submit
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  submitFormChaos(this);
+});
+
+// Contact form Enter key
+document.getElementById('contact-form').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') { e.preventDefault(); submitFormChaos(this); }
+});
+</script>
+</body>
+</html>

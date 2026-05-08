@@ -1,0 +1,625 @@
+/* ============================================================
+   ZenPetals — Anti-Accessible Stylesheet
+   Educational use only — INTENTIONAL WCAG violations
+   Integrative Design Course · Anti-Pattern Demonstration
+   ============================================================ */
+
+/* ── IMPORT deliberately bad font from Google ── */
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+/* ══════════════════════════════════════════════
+   VIOLATION T1 · T2 · T3 · T4 · C1 · K1 · L1 · U2
+   Global base — the core of all typographic horror
+   ══════════════════════════════════════════════ */
+* {
+  /* L1: Zero whitespace everywhere */
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box;
+}
+*:focus {
+  outline: none;
+}
+
+html, body {
+  /* T1: Worst possible font stack */
+  font-family: 'Comic Sans MS', 'Papyrus', Impact, cursive;
+  /* T2: 10px base — nearly unreadable */
+  font-size: 10px ;
+  /* T3: Lines touching/overlapping */
+  line-height: 1.0 !important;
+  /* C1: Pure white glare background */
+  background: #ffffff ;
+  /* K1: 1.6:1 contrast — nearly invisible */
+  color: #cccccc ;
+  /* U2: Fixed px everywhere — breaks at 200% zoom */
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* T4: Justified text everywhere */
+p, div, span, li, td, th, label, a {
+  text-align: justify ;
+  /* T7: No max-width — 140+ char lines */
+  max-width: none ;
+}
+
+/* ══════════════════════════════════════════════
+   VIOLATION T9: H3 in Wingdings — unreadable symbols
+   VIOLATION L2: All headings styled identically to body
+   ══════════════════════════════════════════════ */
+h1, h2, h3, h4, h5, h6, p {
+  /* L2: No hierarchy — all identical */
+  font-size: 10px ;
+  font-weight: 400 !important;
+  color: #cccccc ;
+  line-height: 1.0 !important;
+  font-family: 'Comic Sans MS', 'Papyrus', Impact, cursive;
+}
+
+h3 {
+  /* T9: Wingdings for H3 — literally unreadable */
+  font-family: 'Wingdings', 'Webdings', 'Symbol';
+}
+
+/* ══════════════════════════════════════════════
+   VIOLATION T5: ALL-CAPS utility class
+   VIOLATION T6: Italic blocks
+   VIOLATION T8: Mixed font weights 100 ↔ 900
+   ══════════════════════════════════════════════ */
+.scream {
+  text-transform: uppercase !important;
+  font-weight: 900 !important;
+  color: #000000 ; /* K4: alternating harsh contrast */
+}
+
+.italic-wall {
+  font-style: italic !important;
+  font-weight: 100 !important;
+  color: #cccccc;
+}
+
+.thin { font-weight: 100 !important; }
+.black { font-weight: 900 !important; color: #000 ; }
+
+/* K4: Harsh contrast sections — 21:1, alternates with low contrast */
+.harsh-contrast {
+  color: #000000 ;
+  background: #ffffff ;
+}
+
+/* ══════════════════════════════════════════════
+   VIOLATION C2 · C3: Neon accents + rainbow gradient
+   ══════════════════════════════════════════════ */
+:root {
+  --neon-green: #00FF00;
+  --hot-pink:   #FF00FF;
+  --electric:   #0000FF;
+  --vivid-red:  #FF0000;
+  --rainbow: linear-gradient(
+    90deg,
+    #FF0000 0%, #FF7700 16%,
+    #FFFF00 33%, #00FF00 50%,
+    #0000FF 66%, #8B00FF 83%,
+    #FF00FF 100%
+  );
+}
+
+/* C3: Rainbow gradient on header and main CTA */
+.header-rainbow {
+  background: var(--rainbow) ;
+  color: #ffffff ;
+  padding: 4px 0 !important;
+}
+
+.cta-rainbow {
+  background: var(--rainbow) ;
+  border: none !important;
+  cursor: pointer;
+  /* K3: Terrible contrast */
+  color: #ffffff ;
+}
+
+/* K3: Book Now CTA — white on pale yellow ~1.3:1 */
+.cta-book {
+  background: #fffacd ;
+  color: #ffffff ;
+  border: 1px solid #ffff88 !important;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 10px ;
+  padding: 4px 8px !important;
+  cursor: pointer;
+}
+
+/* ══════════════════════════════════════════════
+   VIOLATION L4: 4-column reading layout
+   VIOLATION L3: Wall of text — no chunking
+   ══════════════════════════════════════════════ */
+.content-columns {
+  column-count: 4 !important;
+  column-gap: 0 !important;
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.wall-of-text {
+  column-count: 4 !important;
+  column-gap: 0 !important;
+  width: 100% !important;
+  text-align: justify ;
+}
+
+/* ══════════════════════════════════════════════
+   VIOLATION L5 · N1: Navigation positions per page
+   ══════════════════════════════════════════════ */
+.nav-top {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 999 !important;
+}
+
+.nav-left {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 120px !important;
+  height: 100vh !important;
+  z-index: 999 !important;
+}
+
+.nav-bottom {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 999 !important;
+}
+
+.nav-float {
+  position: fixed !important;
+  z-index: 999 !important;
+  /* position set by JS randomly */
+}
+
+/* K2: Nav links — yellow on white, 1.07:1 contrast */
+nav a, .nav-link {
+  color: #ffff00 ;
+  text-decoration: none !important;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 10px ;
+  text-align: justify ;
+  /* T4: justified even in nav */
+}
+
+nav {
+  background: #ffffff !important;
+  border-bottom: 1px solid #ffff00 !important;
+  /* H1: Hover-only — starts invisible */
+  opacity: 0 !important;
+  transition: opacity 1.1s cubic-bezier(0.68,-0.55,0.27,1.55) ;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  overflow: visible !important;
+}
+
+nav:hover {
+  opacity: 1 !important;
+}
+
+/* N2: No active state, no breadcrumbs — nothing shows current page */
+nav a.active, nav a:focus { 
+  /* deliberately unchanged — no visual difference */
+  color: #ffff00 ;
+}
+
+/* ══════════════════════════════════════════════
+   VIOLATION N3: Mega-menu — 40+ items, 2px hover tolerance
+   ══════════════════════════════════════════════ */
+.mega-menu {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: #ffffff ;
+  display: none !important;
+  flex-wrap: wrap !important;
+  z-index: 1000 !important;
+  padding: 0 !important;
+  overflow: auto !important;
+}
+
+.mega-menu.visible {
+  display: flex !important;
+}
+
+.mega-menu a {
+  color: #ffff00 ;
+  font-size: 10px ;
+  display: block !important;
+  width: 25% !important;
+  padding: 2px !important;
+  border: 1px solid #00FF00 !important;
+  text-align: justify ;
+}
+
+/* ══════════════════════════════════════════════
+   VIOLATION M1–M6: Animations — infinite loops, bouncy, !important
+   prefers-reduced-motion deliberately overridden
+   ══════════════════════════════════════════════ */
+
+/* M5: Override prefers-reduced-motion — the CSS rule exists but does nothing */
+@media (prefers-reduced-motion: reduce) {
+  /* INTENTIONALLY EMPTY — violations override below with !important */
+}
+
+/* M2: Floating petals */
+@keyframes float {
+  0%   { transform: translateY(0px) rotate(0deg); }
+  50%  { transform: translateY(-40px) rotate(180deg); }
+  100% { transform: translateY(0px) rotate(360deg); }
+}
+
+/* M2: Spinning logo */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* M2: Bouncing hero text */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  40%       { transform: translateY(-30px); }
+  60%       { transform: translateY(-15px); }
+}
+
+/* M2: Pulsing background gradient */
+@keyframes pulseGrad {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* M2: Flashing red text */
+@keyframes flashRed {
+  0%, 49% { color: #FF0000 ; }
+  50%, 100% { color: #ffffff ; }
+}
+
+/* M2: Pulsing neon border */
+@keyframes neonPulse {
+  0%   { box-shadow: 0 0 5px #00FF00; }
+  50%  { box-shadow: 0 0 40px #00FF00, 0 0 80px #FF00FF; }
+  100% { box-shadow: 0 0 5px #00FF00; }
+}
+
+/* M4: Blinking countdown */
+@keyframes blink {
+  0%, 49% { opacity: 1; color: #FF0000 ; }
+  50%, 100% { opacity: 0; }
+}
+
+.petal {
+  position: fixed !important;
+  pointer-events: none !important;
+  font-size: 20px ;
+  animation: float 2s cubic-bezier(0.68,-0.55,0.27,1.55) infinite !important; /* M2, M4 */
+  z-index: 500 !important;
+}
+
+.logo-spin {
+  animation: spin 3s linear infinite !important; /* M2 */
+  display: inline-block !important;
+}
+
+.hero-text {
+  animation: bounce 1s cubic-bezier(0.68,-0.55,0.27,1.55) infinite !important; /* M2, M4 */
+  display: inline-block !important;
+}
+
+.flash-red {
+  animation: flashRed 0.5s linear infinite !important; /* M2 */
+  font-weight: 900 !important;
+}
+
+.neon-pulse {
+  animation: neonPulse 1.5s ease-in-out infinite !important; /* M2 */
+}
+
+.pulse-bg {
+  background: var(--rainbow) ;
+  background-size: 400% 400% !important;
+  animation: pulseGrad 2s ease infinite !important; /* M2 */
+}
+
+/* M4: All transitions use bouncy spring easing 800-1200ms */
+button, a, nav, input{
+  transition: all 1s cubic-bezier(0.68,-0.55,0.27,1.55) !important; /* M4 */
+}
+
+/* ══════════════════════════════════════════════
+   VIOLATION F1 · F2 · F3 · F4: Form chaos
+   ══════════════════════════════════════════════ */
+.form-chaos {
+  display: grid !important;
+  /* F1: 3 unpredictable columns */
+  grid-template-columns: 1fr 1fr 1fr !important;
+  width: 100% !important;
+  gap: 0 !important;
+}
+
+/* F2: Placeholder-only — no visible labels */
+.form-chaos input,
+.form-chaos select,
+.form-chaos textarea {
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 8px ; /* T2: 8px labels */
+  border: 1px solid #cccccc !important;
+  background: #ffffff ;
+  color: #cccccc ;
+  width: 100% !important;
+  padding: 1px !important;
+}
+
+/* F4: Required field — red asterisk only via ::after on wrapper */
+.req::after {
+  content: ' *' !important;
+  color: #FF0000 ;
+  font-size: 6px ;
+}
+
+/* C4: Required field color-only signal */
+.form-chaos input:required {
+  border-left: 2px solid #FF0000 ;
+}
+
+/* F6: Keystroke validation error */
+.field-error {
+  color: #FF0000 ;
+  font-size: 8px ;
+  font-family: 'Comic Sans MS', cursive;
+  display: block !important;
+  animation: flashRed 0.3s infinite !important;
+}
+
+/* F5: Countdown timer */
+.countdown-timer {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  color: #FF0000 ;
+  font-size: 10px ;
+  font-family: 'Comic Sans MS', cursive;
+  animation: blink 0.5s linear infinite !important;
+  z-index: 9999 !important;
+  background: #ffffff ;
+  border: 2px solid #FF0000 !important;
+  padding: 2px !important;
+}
+
+/* ══════════════════════════════════════════════
+   Special Offer section (services page)
+   ══════════════════════════════════════════════ */
+.special-offer-banner {
+  background: var(--neon-green) ;
+  width: 100% !important;
+  padding: 0 !important;
+}
+
+/* ══════════════════════════════════════════════
+   Toast notification
+   ══════════════════════════════════════════════ */
+.chaos-toast {
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  background: var(--hot-pink) ;
+  color: #ffff00 ;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 10px ;
+  padding: 8px !important;
+  z-index: 9998 !important;
+  border: 3px solid var(--neon-green) !important;
+  animation: neonPulse 1s infinite !important;
+  max-width: 200px !important;
+  text-align: justify ;
+}
+
+/* Cookie banner */
+.cookie-banner {
+  position: fixed !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  background: var(--electric) ;
+  color: #ffff00 ;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 8px ;
+  padding: 4px !important;
+  z-index: 9997 !important;
+  text-align: justify ;
+}
+
+/* Notification modal */
+.notif-modal {
+  position: fixed !important;
+  top: 0 !important; left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background: rgba(0,0,0,0.85) ;
+  z-index: 9999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.notif-modal-box {
+  background: #ffffff ;
+  border: 5px solid var(--neon-green) !important;
+  padding: 8px !important;
+  max-width: 300px !important;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 10px ;
+  color: #cccccc ;
+  animation: neonPulse 1s infinite !important;
+}
+
+/* ══════════════════════════════════════════════
+   CAPTCHA mock
+   ══════════════════════════════════════════════ */
+.captcha-box {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  background: #ffffff ;
+  border: 4px solid var(--vivid-red) !important;
+  z-index: 9999 !important;
+  padding: 8px !important;
+  font-family: 'Comic Sans MS', cursive;
+  font-size: 8px ;
+  color: #cccccc ;
+  animation: neonPulse 2s infinite !important;
+}
+
+.captcha-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 60px) !important;
+  gap: 2px !important;
+}
+
+.captcha-cell {
+  width: 60px !important;
+  height: 60px !important;
+  border: 1px solid #ccc !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 20px ;
+  cursor: pointer !important;
+}
+
+.captcha-timer {
+  color: #FF0000 ;
+  font-size: 8px ;
+  animation: blink 0.5s infinite !important;
+}
+
+/* ══════════════════════════════════════════════
+   Fake dark mode toggle (C5)
+   ══════════════════════════════════════════════ */
+.fake-dark-toggle {
+  position: fixed !important;
+  top: 40px !important;
+  right: 5px !important;
+  /* H1: hover-only, no label */
+ 
+  font-size: 8px ;
+  background: #ffff00 ;
+  border: none !important;
+  cursor: pointer !important;
+  z-index: 10000 !important;
+  color: #ffffff ;
+  padding: 1px !important;
+}
+
+.fake-dark-toggle:hover {
+  opacity: 1 !important;
+}
+
+/* ══════════════════════════════════════════════
+   I1, I2, I3: Icon-only navigation and buttons
+   ══════════════════════════════════════════════ */
+.icon-only {
+  font-size: 16px ;
+  background: none ;
+  border: none !important;
+  cursor: pointer !important;
+  color: #ffff00 ;
+  /* No text label — violation I1/I2 */
+}
+
+.submit-arrow {
+  background: none !important;
+  border: 1px solid #cccccc !important;
+  font-size: 14px ;
+  cursor: pointer !important;
+  color: #cccccc ;
+  /* I3: Arrow only, no "Submit" */
+}
+
+/* ══════════════════════════════════════════════
+   Color-only pricing (services page) — C4 / K4
+   ══════════════════════════════════════════════ */
+.price-affordable { color: var(--neon-green) !important; font-size: 8px ; }
+.price-premium    { color: var(--vivid-red) !important;  font-size: 8px ; }
+
+/* ══════════════════════════════════════════════
+   Hover-only treatment panels (H1)
+   ══════════════════════════════════════════════ */
+.treatment-more {
+  display: none !important;
+  color: #cccccc ;
+  font-size: 9px ;
+}
+
+.treatment-panel:hover .treatment-more {
+  display: block !important;
+}
+
+
+/* ══════════════════════════════════════════════
+   Misc layout helpers
+   ══════════════════════════════════════════════ */
+.full-width {
+  width: 100% !important;
+  max-width: none !important;
+}
+
+.carousel-wrap {
+  width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+  height: 80px !important;
+}
+
+.carousel-slide {
+  position: absolute !important;
+  top: 0 !important; left: 0 !important;
+  width: 100% !important;
+  height: 80px !important;
+  display: none !important;
+}
+
+.carousel-slide.active {
+  display: block !important;
+}
+
+/* 4-col featured treatments */
+.treatments-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 0 !important;
+  width: 100% !important;
+}
+
+/* Pricing color-only — services page */
+.services-list {
+  column-count: 4 !important;
+  width: 100% !important;
+  gap: 0 !important;
+}
+
+/* Waterfall canvas hero */
+#hero-canvas {
+  width: 100% !important;
+  height: 200px !important;
+  display: block !important;
+}
+
+/* Image-rendered phone number on contact page */
+#phone-canvas {
+  display: block !important;
+}

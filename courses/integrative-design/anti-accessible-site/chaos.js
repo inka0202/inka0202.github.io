@@ -188,7 +188,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ── F5: 5-minute countdown → wipe form ────────────────────
+// ── F5: 5-minute (3-minute) countdown → wipe form ────────────────────
 function initCountdown(seconds) {
   const el = document.getElementById('countdown');
   if (!el) return;
@@ -210,18 +210,151 @@ function initCountdown(seconds) {
 // ── F6: Keystroke validation ───────────────────────────────
 function initKeystrokeValidation() {
   document.querySelectorAll('input, textarea').forEach(input => {
+
     input.addEventListener('input', () => {
+
       const err = input.nextElementSibling;
       if (!err || !err.classList.contains('field-error')) return;
-      if (input.value.length < 20) {
-        err.textContent = '❌ Invalid. Try harder.';
-        err.style.display = 'block';
-      } else {
-        err.style.display = 'none';
+
+      let valid = true;
+      let msg = '';
+
+      // EMAIL
+      if (input.id.includes('email')) {
+        valid = input.value.includes('@') && input.value.length > 5;
+        msg = valid
+          ? '✔ Suspiciously valid.'
+          : '❌ That email looks fake.';
       }
+
+      // PHONE
+      else if (input.id.includes('phone')) {
+        const digits = input.value.replace(/\D/g, '');
+        valid = digits.length >= 10;
+        msg = valid
+          ? '✔ Number accepted... probably.'
+          : '❌ More digits. MORE.';
+      }
+      else if (input.id.includes('duration')) {
+        
+      const num = parseInt(input.value);
+
+      valid = !isNaN(num) && num > 0 && num < 500;
+
+      msg = valid
+        ? '✔ Time acknowledged.'
+        : '❌ Temporal value rejected.';
+      }
+      // CARD
+      else if (input.id.includes('card-number')) {
+      const digits = input.value.replace(/\D/g, '');
+
+      valid = digits.length >= 16;
+
+      msg = valid
+        ? '✔ Financial risk detected.'
+        : '❌ Card insufficiently card-like.';
+      }
+
+      // EXPIRY
+      else if (input.id.includes('card-expiry')) {
+
+        valid = /^(0[1-9]|1[0-2])\/\d{2}$/.test(input.value);
+
+        msg = valid
+          ? '✔ Expiration accepted.'
+          : '❌ Temporal formatting failure.';
+      }
+
+      // CVV
+      else if (input.id.includes('card-cvv')) {
+
+        valid = /^\d{3,4}$/.test(input.value);
+
+        msg = valid
+          ? '✔ Security ritual complete.'
+          : '❌ Secret number inadequate.';
+      }
+
+        // TEXTAREA
+        else if (input.tagName === 'TEXTAREA') {
+          valid = input.value.length >= 30;
+          msg = valid
+            ? '✔ Message tolerated.'
+            : '❌ Elaborate further.';
+        }
+
+        // DEFAULT
+        else {
+          valid = input.value.trim().length >= 3;
+          msg = valid
+            ? '✔ Acceptable.'
+            : '❌ Too short.';
+        }
+
+      err.textContent = msg;
+      err.style.display = 'block';
+
+      // anti-accessible flashing
+     err.classList.remove('error-flash', 'valid-flash');
+
+    if (valid) {
+      err.classList.add('valid-flash');
+    } else {
+      err.classList.add('error-flash');
+    }
+      
     });
+
   });
 }
+
+function initPaymentLogic() {
+
+  const payment = document.getElementById('payment-type');
+  const cardFields = document.getElementById('card-fields');
+
+  if (!payment || !cardFields) return;
+
+  const cardInputs = cardFields.querySelectorAll('input');
+
+  payment.addEventListener('change', () => {
+
+    const method = payment.value;
+
+    // CARD PAYMENTS
+    if (
+      method === 'Credit Card' ||
+      method === 'Debit Card'
+    ) {
+
+      cardFields.style.display = 'grid';
+
+      // flashing anti-accessible chaos 😄
+      cardFields.classList.add('flash');
+
+      cardInputs.forEach(input => {
+        input.required = true;
+      });
+
+    }
+
+    // CASH / BARTER / CRYPTO
+    else {
+
+      cardFields.style.display = 'none';
+
+      cardInputs.forEach(input => {
+        input.required = false;
+        input.value = '';
+      });
+
+    }
+
+  });
+
+}
+
 
 // ── F7: Auto-format credit card + cursor jump ──────────────
 function initCardFormat() {
@@ -443,6 +576,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initExpiryFormat();
   initKeystrokeValidation();
   randomizeNavPosition();
+  initPaymentLogic();
 
   setTimeout(showNotifModal, 2000);         // A3
   setTimeout(showCookieBanner, 500);        // A5

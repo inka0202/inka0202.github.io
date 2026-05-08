@@ -287,6 +287,10 @@ nav a.active, nav a:focus {
   0%, 49% { color: #FF0000 ; }
   50%, 100% { color: #ffffff ; }
 }
+@keyframes flashRed {
+  0%, 49% { color: #FF0000 ; }
+  50%, 100% { color: #ffffff ; }
+}
 
 /* M2: Pulsing neon border */
 @keyframes neonPulse {
@@ -366,7 +370,6 @@ button, a, nav, input{
 /* F4: Required field — red asterisk only via ::after on wrapper */
 .req::after {
   content: ' *' !important;
-  color: #FF0000 ;
   font-size: 6px ;
 }
 
@@ -377,13 +380,38 @@ button, a, nav, input{
 
 /* F6: Keystroke validation error */
 .field-error {
-  color: #FF0000 ;
   font-size: 8px ;
   font-family: 'Comic Sans MS', cursive;
   display: block !important;
-  animation: flashRed 0.3s infinite !important;
+  
 }
 
+.field-error.error-flash {
+  animation: flashRed 0.3s infinite;
+}
+
+/* VALID */
+.field-error.valid-flash {
+  animation: flashGreen 0.5s infinite;
+}
+
+@keyframes flashRed {
+  0%, 49% {
+    color: #ff0000;
+  }
+  50%, 100% {
+    color: #ffffff;
+  }
+}
+
+@keyframes flashGreen {
+  0%, 49% {
+    color: #00ff00;
+  }
+  50%, 100% {
+    color: #ffffff;
+  }
+}
 /* F5: Countdown timer */
 .countdown-timer {
   position: fixed !important;

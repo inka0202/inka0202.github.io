@@ -101,7 +101,7 @@
       <!-- Field 5: Phone — auto-formats on keystroke (F7) -->
       <div class="req">
         <input type="text" placeholder="Phone" required id="phone" maxlength="20">
-        <span class="field-error" style="display:none">❌ Invalid. Try harder.</span>
+        <span class="field-error" style="display:none"></span>
       </div>
 
       <!-- Fields 6-8: DOB as 3 separate selects -->
@@ -205,7 +205,7 @@
 
       <!-- Field 13: Duration — no unit label (F2) -->
       <div class="req">
-        <input type="number" placeholder="Duration" required id="duration" min="1" max="999">
+        <input type="text" placeholder="Duration" required id="duration">
         <!-- F2: No unit label — minutes? hours? sessions? -->
         <span class="field-error" style="display:none"></span>
       </div>
@@ -215,6 +215,7 @@
         <textarea id="special-requests" placeholder="Special Requests (there may or may not be a character limit)" rows="2" style="width:100%;font-family:'Comic Sans MS';font-size:8px;color:#ccc"></textarea>
         <!-- char counter injected by JS only after exceeding 2000 chars -->
       </div>
+
 
       <!-- Field 15: Payment Type -->
       <div class="req">
@@ -229,26 +230,28 @@
         <span class="field-error" style="display:none"></span>
       </div>
 
+      <div id="card-fields" style="display:none;grid-column:span 3">
       <!-- Field 16: Card Number — auto-inserts dashes mid-type (F7) -->
       <div class="req" style="grid-column: span 2">
-        <input type="text" placeholder="Card Number" id="card-number" maxlength="19" required>
-        <span class="field-error" style="display:none">❌ Invalid. Try harder.</span>
+        <input type="text" placeholder="Card Number" id="card-number" maxlength="19">
+        <span class="field-error" style="display:none"></span>
       </div>
 
       <!-- Field 17: Expiry — MM/YY auto-formats (F7) -->
       <div class="req">
-        <input type="text" placeholder="MM/YY" id="card-expiry" maxlength="5" required>
+        <input type="text" placeholder="MM/YY" id="card-expiry" maxlength="5">
         <span class="field-error" style="display:none"></span>
       </div>
 
       <!-- Field 18: CVV — icon-only tooltip (I2) -->
       <div class="req">
         <div style="display:flex;align-items:center;gap:1px">
-          <input type="text" placeholder="CVV" id="card-cvv" maxlength="4" required style="width:60px">
+          <input type="text" placeholder="CVV" id="card-cvv" maxlength="3" style="width:60px">
+          <span class="field-error" style="display:none"></span>
           <!-- I2: icon-only, no visible label, tooltip-only explanation -->
-          <span title="See back of card" style="cursor:help;font-size:12px;color:#cccccc">🔒</span>
+          <span title="See back of card" style="cursor:help;font-size:12px;color:#cccccc">🔒</span> 
         </div>
-        <span class="field-error" style="display:none"></span>
+      </div>
       </div>
 
       <!-- Fields 19-22: Billing Address — 5 fields in 2 columns (F1) -->
@@ -258,6 +261,7 @@
       </div>
       <div class="req">
         <input type="text" placeholder="Apt/Suite" id="apt">
+        <span class="field-error" style="display:none"></span>
       </div>
       <div class="req">
         <input type="text" placeholder="City" required id="city">

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About ZenPetals — Wellness &amp; Spa</title>
+  <meta name="description" content="Learn about ZenPetals, our team, and our commitment to a calm and accessible spa experience." />
+  <link rel="stylesheet" href="styles.css" />
+ 
+</head>
+<body class="reduce-motion-override">
+
+  <!-- =====================================================
+       ACCESSIBILITY TOOLBAR (Rule 13)
+  ===================================================== -->
+  <div class="a11y-toolbar" role="region" aria-label="Accessibility options">
+    <div class="a11y-toolbar__inner">
+      <span class="a11y-toolbar__label">Accessibility:</span>
+      <button id="btn-theme" class="a11y-btn" type="button" aria-pressed="false">
+        ☾ Dark mode
+      </button>
+      <button id="btn-motion" class="a11y-btn" type="button" aria-pressed="false">
+       ⏸ Motion: off
+      </button>
+      <button id="btn-font" class="a11y-btn" type="button" data-next-size="22">
+        Aa 18px
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       NAVIGATION BAR (Rule 05)
+  ===================================================== -->
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a class="site-nav__logo" href="index.html">ZenPetals</a>
+        <ul class="site-nav__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="about.html" aria-current="page">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- =====================================================
+         PAGE HEADER
+    ===================================================== -->
+    <div class="page-header">
+      <div class="container">
+        <h1>About ZenPetals</h1>
+        <p class="section__subheading">
+          Who we are and what we believe in.
+        </p>
+      </div>
+    </div>
+
+    <!-- =====================================================
+         SECTION 1 · OUR STORY
+         2–3 short paragraphs. Plain language. No idioms.
+         Values: calm, inclusivity, care (Rule 10).
+    ===================================================== -->
+    <section class="section" aria-labelledby="story-heading">
+      <div class="container container--narrow">
+        <h2 id="story-heading">Our Story</h2>
+
+        <p>
+          ZenPetals opened in Bristol in 2018. We started with one simple idea:
+          a spa where everyone feels welcome and no one feels rushed.
+        </p>
+        <p>
+          We believe that relaxation should be easy to access.
+          Our three values are calm, inclusivity, and care.
+          We apply these values to every treatment, every booking, and every conversation.
+        </p>
+        <p>
+          Over the years, we have learned that many of our clients prefer a quiet,
+          predictable visit with no surprises.
+          So we designed our space and our website around that preference.
+          We are still learning, and we always welcome feedback.
+        </p>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 2 · OUR COMMITMENT TO ACCESSIBILITY
+         Explicit statement about autistic visitors (Rule 10).
+    ===================================================== -->
+    <section class="section section--alt" aria-labelledby="commitment-heading">
+      <div class="container">
+        <h2 id="commitment-heading">Our Commitment to Accessibility</h2>
+
+        <div class="commitment-box">
+          <p>
+            ZenPetals is designed to be welcoming for autistic visitors,
+            people with sensory sensitivities, and anyone who prefers a calm,
+            predictable experience.
+          </p>
+          <p>
+            Our website has no pop-ups, no flashing images, and no content
+            that changes without you asking it to.
+            You can increase the text size, switch to dark mode,
+            and turn off all animations using the toolbar at the top of every page.
+          </p>
+          <p>
+            In our spa, you can ask your therapist to stop or change the treatment at any time.
+            We use fragrance-free products unless you choose otherwise.
+            Our rooms are softly lit and quiet.
+          </p>
+          <p>
+            If you have questions before you book, please email us at
+            <a href="mailto:hello@example.com">hello@example.com</a>.
+            We are happy to answer any question, no matter how small.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 3 · OUR TEAM
+         Single-column list. No carousel.
+         Each photo has descriptive alt text (not generic).
+    ===================================================== -->
+    <section class="section" aria-labelledby="team-heading">
+      <div class="container">
+        <div class="section__heading">
+          <h2 id="team-heading">Our Team</h2>
+          <p class="section__subheading">
+            Three people who care about making you feel comfortable.
+          </p>
+        </div>
+
+        <ul class="team-list" role="list">
+
+          <li class="team-card">
+            <img
+              class="team-card__photo"
+              src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=180&q=80"
+              alt="Clara, a woman with shoulder-length dark hair, smiling gently in a white uniform"
+              width="90"
+              height="90"
+            />
+            <div class="team-card__info">
+              <h3 class="team-card__name">Clara Mendes</h3>
+              <p class="team-card__role">Lead Therapist</p>
+              <p class="team-card__bio">
+                Clara specialises in gentle massage for clients who prefer a quiet,
+                low-pressure session.
+              </p>
+            </div>
+          </li>
+
+          <li class="team-card">
+            <img
+              class="team-card__photo"
+              src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=180&q=80"
+              alt="Daniel, a man with short auburn hair wearing a sage green therapist's tunic"
+              width="90"
+              height="90"
+            />
+            <div class="team-card__info">
+              <h3 class="team-card__name">Daniel Osei</h3>
+              <p class="team-card__role">Aromatherapist</p>
+              <p class="team-card__bio">
+                Daniel has eight years of experience in aromatherapy and always
+                gives clients a full choice of oils before beginning.
+              </p>
+            </div>
+          </li>
+
+          <li class="team-card">
+            <img
+              class="team-card__photo"
+              src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=180&q=80"
+              alt="Priya, a woman with dark hair tied back, wearing a white coat and holding a clipboard"
+              width="90"
+              height="90"
+            />
+            <div class="team-card__info">
+              <h3 class="team-card__name">Priya Nair</h3>
+              <p class="team-card__role">Skin Care Specialist</p>
+              <p class="team-card__bio">
+                Priya leads all facial treatments and uses only fragrance-free,
+                dermatologist-tested products by default.
+              </p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 4 · OUR LOCATION
+         Plain text address. Hours as <table>.
+         Static map image — not an interactive widget.
+         Separate plain text Google Maps link (Rule 07).
+    ===================================================== -->
+    <section class="section section--alt" aria-labelledby="location-heading">
+      <div class="container">
+        <h2 id="location-heading">Our Location</h2>
+
+        <address class="location-address">
+          ZenPetals Wellness &amp; Spa<br />
+          14 Meadow Lane<br />
+          Bristol, BS1 4QR<br />
+          <br />
+          Phone: <a href="tel:+48111222333">+48 111 222 333</a><br />
+          Email: <a href="mailto:hello@example.com">hello@example.com</a>
+        </address>
+
+        <h3>Opening Hours</h3>
+        <table class="hours-table" aria-label="Opening hours">
+          <thead>
+            <tr>
+              <th scope="col">Day</th>
+              <th scope="col">Hours</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Monday</td>
+              <td>Closed</td>
+            </tr>
+            <tr>
+              <td>Tuesday – Friday</td>
+              <td>09:00 – 18:00</td>
+            </tr>
+            <tr>
+              <td>Saturday</td>
+              <td>09:00 – 17:00</td>
+            </tr>
+            <tr>
+              <td>Sunday</td>
+              <td>10:00 – 15:00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Static map image — OpenStreetMap data, no interactive widget, no auto-loaded scripts -->
+        <img
+          class="location-map-img"
+          src="https://staticmap.openstreetmap.de/staticmap.php?center=51.4545,-2.5879&zoom=15&size=560x280&markers=51.4545,-2.5879,red-marker"
+          alt="A map showing the area around 14 Meadow Lane in Bristol city centre. The location is marked with a red pin."
+          width="560"
+          height="280"
+          onerror="this.style.display='none'; document.getElementById('map-fallback').style.display='block';"
+        />
+
+        <!-- Fallback if static map image fails to load -->
+        <p id="map-fallback" style="display:none; background:var(--color-bg-section); border-radius:10px; padding:24px; max-width:560px; color:var(--color-text-muted);">
+          Map image not available. Use the link below to view our location.
+        </p>
+
+        <p>
+          <a
+            href="https://www.openstreetmap.org/search?query=Bristol+BS1+4QR"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View our location on OpenStreetMap (opens in a new tab)
+          </a>
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+
+      <div>
+        <p class="site-footer__heading">ZenPetals</p>
+        <p>Wellness &amp; Spa Centre<br />Book your calm. At your pace.</p>
+      </div>
+
+      <div>
+        <p class="site-footer__heading">Contact</p>
+        <address>
+          14 Meadow Lane<br />
+          Bristol, BS1 4QR<br />
+          <br />
+          Phone: <a href="tel:+48 111 222 333">+48 111 222 333</a><br />
+          Email: <a href="mailto:hello@example.com">hello@example.com</a>
+        </address>
+      </div>
+
+      <div>
+        <p class="site-footer__heading">Sitemap</p>
+        <ul class="site-footer__nav" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+
+      <p class="site-footer__copy">
+        &copy; <span id="year"></span> ZenPetals. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+ <script src="accessibility.js"></script>
+ <script>
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+</script>
+</body>
+</html>

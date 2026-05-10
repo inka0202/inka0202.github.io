@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Treatment — ZenPetals</title>
+  <meta name="description" content="Book a spa treatment at ZenPetals. A simple, calm form with no time limits and no surprises." />
+  <link rel="stylesheet" href="styles.css" />
+   <script src="booking.js"></script>
+  <script src="accessibility.js"></script>
+</head>
+<body class="reduce-motion-override">
+
+  <!-- =====================================================
+       ACCESSIBILITY TOOLBAR (Rule 13)
+  ===================================================== -->
+  <div class="a11y-toolbar" role="region" aria-label="Accessibility options">
+    <div class="a11y-toolbar__inner">
+      <span class="a11y-toolbar__label">Accessibility:</span>
+      <button id="btn-theme" class="a11y-btn" type="button" aria-pressed="false">
+        ☾ Dark mode
+      </button>
+      <button id="btn-motion" class="a11y-btn" type="button" aria-pressed="false">
+       ⏸ Motion: off
+      </button>
+      <button id="btn-font" class="a11y-btn" type="button" data-next-size="22">
+        Aa 18px
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       NAVIGATION BAR (Rule 05)
+  ===================================================== -->
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a class="site-nav__logo" href="index.html">ZenPetals</a>
+        <ul class="site-nav__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="booking.html" aria-current="page">Booking</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- =====================================================
+         PAGE HEADER
+    ===================================================== -->
+    <div class="page-header">
+      <div class="container">
+        <h1>Book a Treatment</h1>
+        <p class="section__subheading">
+          Fill in the form below. All required fields are marked (required).
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <!-- ===================================================
+           BOOKING FORM
+           Single column. No time limit. No CAPTCHA.
+           Validate on blur. (Rules 11, 12)
+      =================================================== -->
+      <section
+        class="booking-form"
+        id="booking-form-section"
+        aria-labelledby="form-label"
+      >
+        <p id="form-label" class="visually-hidden">Booking form</p>
+
+        <form
+          id="booking-form"
+          novalidate
+          aria-label="Book a treatment"
+        >
+
+          <!-- -------------------------------------------------
+               FIELDSET 1 — Your Details
+          ------------------------------------------------- -->
+          <fieldset>
+            <legend>Your Details</legend>
+
+            <!-- Full Name -->
+            <div class="form-group">
+              <label class="form-label" for="full-name">
+                Full Name <span class="form-label__required">(required)</span>
+              </label>
+              <p
+                class="form-help"
+                id="full-name-help"
+              >Enter your first and last name.</p>
+              <input
+                class="form-input"
+                type="text"
+                id="full-name"
+                name="full-name"
+                autocomplete="name"
+                aria-required="true"
+                aria-describedby="full-name-help full-name-error"
+              />
+              <p
+                class="field-error"
+                id="full-name-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <!-- Email Address -->
+            <div class="form-group">
+              <label class="form-label" for="email">
+                Email Address <span class="form-label__required">(required)</span>
+              </label>
+              <p
+                class="form-help"
+                id="email-help"
+              >We will send your confirmation here. Example: name@example.com</p>
+              <input
+                class="form-input"
+                type="email"
+                id="email"
+                name="email"
+                autocomplete="email"
+                aria-required="true"
+                aria-describedby="email-help email-error"
+              />
+              <p
+                class="field-error"
+                id="email-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="form-group">
+              <label class="form-label" for="phone">
+                Phone Number <span class="form-label__required">(optional)</span>
+              </label>
+              <p
+                class="form-help"
+                id="phone-help"
+              >We will only call you if there is a problem with your booking.</p>
+              <input
+                class="form-input"
+                type="tel"
+                id="phone"
+                name="phone"
+                autocomplete="tel"
+                aria-describedby="phone-help"
+              />
+            </div>
+
+          </fieldset>
+
+          <!-- -------------------------------------------------
+               FIELDSET 2 — Choose a Service
+          ------------------------------------------------- -->
+          <fieldset>
+            <legend>Choose a Service <span class="form-label__required">(required)</span></legend>
+
+            <p
+              class="field-error"
+              id="service-error"
+              role="alert"
+              aria-live="polite"
+            ></p>
+
+            <div
+              class="radio-group"
+              role="radiogroup"
+              aria-required="true"
+              aria-describedby="service-error"
+            >
+
+              <label class="radio-option">
+                <input
+                  type="radio"
+                  name="service"
+                  value="massage-therapy"
+                />
+                <span>
+                  <span class="radio-option__label">Massage Therapy</span>
+                  <span class="radio-option__desc">
+                    A gentle full-body massage to ease tension and help you rest.
+                    60 minutes · From £55
+                  </span>
+                </span>
+              </label>
+
+              <label class="radio-option">
+                <input
+                  type="radio"
+                  name="service"
+                  value="aromatherapy"
+                />
+                <span>
+                  <span class="radio-option__label">Aromatherapy</span>
+                  <span class="radio-option__desc">
+                    A light massage with natural plant oils chosen for calm and comfort.
+                    50 minutes · From £50
+                  </span>
+                </span>
+              </label>
+
+              <label class="radio-option">
+                <input
+                  type="radio"
+                  name="service"
+                  value="relaxation-facial"
+                />
+                <span>
+                  <span class="radio-option__label">Relaxation Facial</span>
+                  <span class="radio-option__desc">
+                    A gentle facial treatment to soothe and hydrate your skin.
+                    Fragrance-free products used by default.
+                    45 minutes · From £45
+                  </span>
+                </span>
+              </label>
+
+            </div>
+          </fieldset>
+
+          <!-- -------------------------------------------------
+               FIELDSET 3 — Date & Time
+          ------------------------------------------------- -->
+          <fieldset>
+            <legend>Date &amp; Time</legend>
+
+            <!-- Preferred Date -->
+            <div class="form-group">
+              <label class="form-label" for="date">
+                Preferred Date <span class="form-label__required">(required)</span>
+              </label>
+              <p
+                class="form-help"
+                id="date-help"
+              >Please choose a date at least 2 days from today.</p>
+              <input
+                class="form-input"
+                type="date"
+                id="date"
+                name="date"
+                aria-required="true"
+                aria-describedby="date-help date-error"
+              />
+              <p
+                class="field-error"
+                id="date-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+            </div>
+
+            <!-- Preferred Time -->
+            <div class="form-group">
+              <p class="form-label" id="time-label">
+                Preferred Time <span class="form-label__required">(required)</span>
+              </p>
+              <p
+                class="field-error"
+                id="time-error"
+                role="alert"
+                aria-live="polite"
+              ></p>
+              <div
+                class="time-grid"
+                role="radiogroup"
+                aria-labelledby="time-label"
+                aria-required="true"
+                aria-describedby="time-error"
+              >
+                <label class="time-option">
+                  <input type="radio" name="time" value="09:00" />
+                  09:00
+                </label>
+                <label class="time-option">
+                  <input type="radio" name="time" value="11:00" />
+                  11:00
+                </label>
+                <label class="time-option">
+                  <input type="radio" name="time" value="13:00" />
+                  13:00
+                </label>
+                <label class="time-option">
+                  <input type="radio" name="time" value="15:00" />
+                  15:00
+                </label>
+                <label class="time-option">
+                  <input type="radio" name="time" value="17:00" />
+                  17:00
+                </label>
+              </div>
+            </div>
+
+          </fieldset>
+
+          <!-- -------------------------------------------------
+               FIELDSET 4 — Additional Notes
+          ------------------------------------------------- -->
+          <fieldset>
+            <legend>Additional Notes</legend>
+
+            <div class="form-group">
+              <label class="form-label" for="notes">
+                Is there anything we should know?
+                <span class="form-label__required">(optional)</span>
+              </label>
+              <p
+                class="form-help"
+                id="notes-help"
+              >For example: allergies, mobility needs, or preferences. This is optional.</p>
+              <textarea
+                class="form-textarea"
+                id="notes"
+                name="notes"
+                rows="5"
+                aria-describedby="notes-help"
+              ></textarea>
+            </div>
+
+          </fieldset>
+
+          <!-- Submit — Review My Booking (not "Submit") -->
+          <button
+            class="btn btn--sage btn--full-width"
+            type="submit"
+            id="btn-review"
+          >
+            Review My Booking
+          </button>
+
+        </form>
+      </section>
+
+      <!-- ===================================================
+           CONFIRMATION SUMMARY SCREEN
+           Shown in place of the form — no page reload.
+           All entered data displayed. (Rule 12)
+      =================================================== -->
+      <section
+        class="confirmation-screen"
+        id="confirmation-screen"
+        aria-labelledby="confirm-heading"
+        aria-live="polite"
+      >
+        <h2 id="confirm-heading">Please check your booking details.</h2>
+
+        <table class="summary-table" aria-label="Your booking summary">
+          <tbody>
+            <tr>
+              <th scope="row">Full Name</th>
+              <td id="summary-name">—</td>
+            </tr>
+            <tr>
+              <th scope="row">Email Address</th>
+              <td id="summary-email">—</td>
+            </tr>
+            <tr>
+              <th scope="row">Phone Number</th>
+              <td id="summary-phone">—</td>
+            </tr>
+            <tr>
+              <th scope="row">Service</th>
+              <td id="summary-service">—</td>
+            </tr>
+            <tr>
+              <th scope="row">Date</th>
+              <td id="summary-date">—</td>
+            </tr>
+            <tr>
+              <th scope="row">Time</th>
+              <td id="summary-time">—</td>
+            </tr>
+            <tr>
+              <th scope="row">Additional Notes</th>
+              <td id="summary-notes">—</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="confirmation-actions">
+          <button
+            class="btn btn--ghost"
+            type="button"
+            id="btn-edit"
+          >
+            Go Back and Edit
+          </button>
+          <button
+            class="btn btn--sage"
+            type="button"
+            id="btn-confirm"
+          >
+            Confirm Booking
+          </button>
+        </div>
+      </section>
+
+      <!-- ===================================================
+           SUCCESS MESSAGE
+           Replaces form area after final confirmation.
+      =================================================== -->
+      <section
+        class="success-message"
+        id="success-message"
+        aria-labelledby="success-heading"
+        aria-live="polite"
+      >
+        <div class="success-message__box">
+          <h2 class="success-message__heading" id="success-heading">
+            Your booking is confirmed.
+          </h2>
+          <p class="success-message__text" id="success-text">
+            We will send a confirmation to your email address within 24 hours.
+          </p>
+        </div>
+      </section>
+
+    </div><!-- /.container -->
+  </main>
+
+  <!-- =====================================================
+       FOOTER
+  ===================================================== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+
+      <div>
+        <p class="site-footer__heading">ZenPetals</p>
+        <p>Wellness &amp; Spa Centre<br />Book your calm. At your pace.</p>
+      </div>
+
+      <div>
+        <p class="site-footer__heading">Contact</p>
+        <address>
+          14 Meadow Lane<br />
+          Bristol, BS1 4QR<br />
+          <br />
+          Phone: <a href="tel:+48111222333">+48 111 222 333</a><br />
+          Email: <a href="mailto:hello@example.com">hello@example.com</a>
+        </address>
+      </div>
+
+      <div>
+        <p class="site-footer__heading">Sitemap</p>
+        <ul class="site-footer__nav" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+
+      <p class="site-footer__copy">
+        &copy; <span id="year"></span> ZenPetals. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+<script>
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+</script>
+</body>
+</html>

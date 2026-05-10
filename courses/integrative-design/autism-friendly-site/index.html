@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZenPetals — Wellness &amp; Spa Booking</title>
+  <meta name="description" content="Book a calm, accessible spa treatment at ZenPetals. Simple booking, clear steps, no surprises." />
+  <link rel="stylesheet" href="styles.css" />
+  <!-- accessibility.js runs before paint to prevent theme flash -->
+  <script src="accessibility.js"></script>
+</head>
+<body class="reduce-motion-override">
+
+  <!-- =====================================================
+       ACCESSIBILITY TOOLBAR (Rule 13)
+       Identical on all three pages.
+  ===================================================== -->
+  <div class="a11y-toolbar" role="region" aria-label="Accessibility options">
+    <div class="a11y-toolbar__inner">
+      <span class="a11y-toolbar__label">Accessibility:</span>
+
+      <button id="btn-theme" class="a11y-btn" type="button" aria-pressed="false">
+        ☾ Dark mode
+      </button>
+
+      <button id="btn-motion" class="a11y-btn" type="button" aria-pressed="false">
+        ⏸ Motion: off
+      </button>
+
+      <button id="btn-font" class="a11y-btn" type="button" data-next-size="22">
+        Aa 18px
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       NAVIGATION BAR (Rule 05)
+       Sticky. Never hides on scroll. No dropdown menus.
+       Identical on all three pages.
+  ===================================================== -->
+  <header>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav__inner">
+        <a class="site-nav__logo" href="index.html">ZenPetals</a>
+        <ul class="site-nav__links" role="list">
+          <li><a href="index.html" aria-current="page">Home</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- =====================================================
+         SECTION 1 · HERO
+         Static photograph. No video, no GIF, no autoplay.
+         Headline and subheading in plain language (Rule 10).
+    ===================================================== -->
+    <section class="hero" aria-labelledby="hero-heading">
+      <!-- Static photograph — decorative, so alt="" -->
+      <img
+        class="hero__image"
+        src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1400&q=80"
+        alt=""
+        aria-hidden="true"
+      />
+      <div class="container">
+        <div class="hero__content">
+          <h1 id="hero-heading" class="hero__heading">Wellness, at your pace.</h1>
+          <p class="hero__subheading">
+            Book a treatment that fits your needs. We make it simple and calm.
+          </p>
+          <a class="btn btn--sage" href="booking.html">Book a Treatment</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 2 · WHAT WE OFFER
+         Three service cards — vertical single-column list.
+         Not a carousel. Each card has icon + text label,
+         name, description, and price (Rule 09).
+    ===================================================== -->
+    <section class="section" aria-labelledby="services-heading">
+      <div class="container">
+        <div class="section__heading">
+          <h2 id="services-heading">What We Offer</h2>
+          <p class="section__subheading">
+            We offer three treatments. Each one is calm, quiet, and designed around you.
+          </p>
+        </div>
+
+        <ul class="services-list" role="list">
+
+          <li class="service-card">
+            <div class="service-card__icon-label">
+              <span aria-hidden="true">🤲</span>
+              <span>Massage Therapy</span>
+            </div>
+            <h3 class="service-card__name">Massage Therapy</h3>
+            <p class="service-card__description">
+              A gentle, full-body massage to ease tension and help you rest.
+              Our therapists work slowly and always check in with you first.
+              You can ask them to avoid any area at any time.
+            </p>
+            <p class="service-card__price">From £55 · 60 minutes</p>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__icon-label">
+              <span aria-hidden="true">🌿</span>
+              <span>Aromatherapy</span>
+            </div>
+            <h3 class="service-card__name">Aromatherapy</h3>
+            <p class="service-card__description">
+              A light massage using natural plant oils chosen for calm and comfort.
+              You can choose your scent from a small, clearly labelled collection.
+              Unscented oil is always available on request.
+            </p>
+            <p class="service-card__price">From £50 · 50 minutes</p>
+          </li>
+
+          <li class="service-card">
+            <div class="service-card__icon-label">
+              <span aria-hidden="true">✨</span>
+              <span>Relaxation Facial</span>
+            </div>
+            <h3 class="service-card__name">Relaxation Facial</h3>
+            <p class="service-card__description">
+              A quiet, gentle facial treatment to soothe and hydrate your skin.
+              We use fragrance-free products by default.
+              The room is softly lit and quiet throughout.
+            </p>
+            <p class="service-card__price">From £45 · 45 minutes</p>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 3 · HOW TO BOOK
+         Three numbered steps — vertical list, no animation.
+         Literal, short copy (Rule 10).
+    ===================================================== -->
+    <section class="section section--alt" aria-labelledby="steps-heading">
+      <div class="container">
+        <div class="section__heading">
+          <h2 id="steps-heading">How to Book</h2>
+          <p class="section__subheading">Three simple steps. No surprises.</p>
+        </div>
+
+        <ol class="steps-list" role="list">
+          <li class="step">
+            <div class="step__number" aria-hidden="true">1</div>
+            <p class="step__text">Choose a service from the list above.</p>
+          </li>
+          <li class="step">
+            <div class="step__number" aria-hidden="true">2</div>
+            <p class="step__text">Fill in the booking form. It takes less than 3 minutes.</p>
+          </li>
+          <li class="step">
+            <div class="step__number" aria-hidden="true">3</div>
+            <p class="step__text">We will confirm your booking by email within 24 hours.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- =====================================================
+         SECTION 4 · CTA BANNER
+         Sage-green background. Literal button label (Rule 10).
+    ===================================================== -->
+    <section class="cta-banner" aria-labelledby="cta-heading">
+      <div class="container">
+        <p class="cta-banner__text" id="cta-heading">
+          Ready to relax? Booking takes less than 3 minutes.
+        </p>
+        <a class="btn btn--sage" href="booking.html">Go to Booking Form</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================
+       FOOTER
+       Plain text contact info. No social icons without labels.
+       Sitemap links included (Rule 05).
+  ===================================================== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+
+      <div>
+        <p class="site-footer__heading">ZenPetals</p>
+        <p>Wellness &amp; Spa Centre<br />Book your calm. At your pace.</p>
+      </div>
+
+      <div>
+        <p class="site-footer__heading">Contact</p>
+        <address>
+          14 Meadow Lane<br />
+          Bristol, BS1 4QR<br />
+          <br />
+          Phone: <a href="tel:+48111222333">+48 111 222 333</a><br />
+          Email: <a href="mailto:hello@example.com">hello@example.com</a>
+        </address>
+      </div>
+
+      <div>
+        <p class="site-footer__heading">Sitemap</p>
+        <ul class="site-footer__nav" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="about.html">About</a></li>
+        </ul>
+      </div>
+
+      <p class="site-footer__copy ">
+        &copy; <span id="year"></span> ZenPetals. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+<script>
+  document.getElementById('year').textContent =
+    new Date().getFullYear();
+</script>
+</body>
+</html>

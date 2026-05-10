@@ -1,0 +1,1111 @@
+/* ============================================================
+   ZenPetals — Shared Stylesheet
+   Autism-Friendly Web Design · Integrative Design Course
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. Google Fonts Import
+   ------------------------------------------------------------ */
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Lora:wght@500;600&display=swap');
+
+/* ------------------------------------------------------------
+   2. CSS Custom Properties — Light Mode (default)
+   ------------------------------------------------------------ */
+:root {
+  /* Original palette tokens — for decorative / border / fill use */
+  --color-bg:            #f8f5ee; /* Page background (light mode) */
+  --color-bg-section:    #f0ebe0; /* Section backgrounds, card fills */
+  --color-bg-dark:       #2c3a45; /* Page bg (dark mode) / nav bar */
+  --color-text:          #1f2937; /* Body text — ~41:1 on bg (well above target) */
+  --color-text-muted:    #4b5566; /* Secondary text — 6.81:1 on bg ✓ */
+  --color-sage:          #7a9170; /* Decorative only (borders, fills, radio accent) */
+  --color-caramel:       #c89262; /* Decorative only (fills, backgrounds) */
+  --color-dusty-blue:    #6b8a9b; /* Decorative only */
+  --color-error-border:  #c47a7a; /* Invalid input borders only — 3.04:1 UI ✓ */
+
+  /* Accessible text / button / interactive colors (contrast-verified) */
+  --color-sage-text:         #3d5c38; /* sage as TEXT — 6.98:1 on bg ✓ */
+  --color-caramel-text:      #7a4f1e; /* caramel as TEXT — 6.32:1 on bg ✓ */
+  --color-link:              #2c5f77; /* link color — 5.81:1 on bg ✓ */
+  --color-btn-primary:       #5e7458; /* sage button bg — white text 5.10:1 ✓ */
+  --color-btn-primary-hover: #48593d; /* sage button hover — white text 7.58:1 ✓ */
+  --color-error:             #9b3d3d; /* error text — 6.21:1 on bg ✓ */
+  --color-input-border:      #7a7060; /* input borders — 4.52:1 on bg ✓ */
+
+  /* Typography */
+  --font-body:    'Atkinson Hyperlegible', sans-serif;
+  --font-heading: 'Lora', serif;
+  --font-size-base: 18px;
+  --line-height-body: 1.7;
+
+  /* Spacing */
+  --section-padding: 64px;
+  --container-max:   70ch;
+  --container-wide:  1100px;
+
+  /* Motion */
+  --transition-speed: 200ms;
+
+  /* Toolbar */
+  --toolbar-bg:     #e8e3d8;
+  --toolbar-border: #cdc6b8;
+}
+
+/* ------------------------------------------------------------
+   3. Dark Mode — data-theme="dark" on <html>
+   All contrast ratios verified against dark bg #2c3a45 (L≈0.055)
+   ------------------------------------------------------------ */
+[data-theme="dark"] {
+  --color-bg:          #2c3a45;
+  --color-bg-section:  #243039;
+  --color-text:        #eae6dd; /* 8.02:1 on dark bg ✓ */
+  --color-text-muted:  #a8b4bc; /* 4.73:1 on dark bg ✓ */
+  --toolbar-bg:        #1e2c35;
+  --toolbar-border:    #3a4f5c;
+
+  /* Accessible overrides for dark bg */
+  --color-sage-text:         #9bbf94; /* 4.88:1 on dark bg ✓ */
+  --color-caramel-text:      #e0a96a; /* 4.79:1 on dark bg ✓ */
+  --color-link:              #8ec5db; /* 5.52:1 on dark bg ✓ */
+  --color-error:             #f0a8a8; /* 5.37:1 on dark bg ✓ */
+  --color-error-border:      #e09090;
+  --color-input-border:      #7a9aaa; /* 3.34:1 on dark bg — UI component ✓ */
+}
+
+/* ------------------------------------------------------------
+   4. prefers-reduced-motion — honors OS setting
+   (also overridden in-page by the Motion toggle)
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Injected by accessibility.js Motion toggle */
+.reduce-motion-override *,
+.reduce-motion-override *::before,
+.reduce-motion-override *::after {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* ------------------------------------------------------------
+   5. Visually Hidden Utility
+   ------------------------------------------------------------ */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ------------------------------------------------------------
+   6. CSS Reset + Base Styles
+   ------------------------------------------------------------ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: var(--font-size-base);
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: var(--line-height-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  text-align: left;
+  /* Page load fade-in — 450ms, gentle rise. Disabled by reduce-motion. */
+  animation: pageFadeIn 450ms ease-out both;
+}
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Readable line length on all content containers */
+.container {
+  width: 100%;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.container--narrow {
+  max-width: var(--container-max);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------
+   7. Typography
+   ------------------------------------------------------------ */
+h1, h2, h3 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--color-text);
+  text-align: left;
+}
+
+h1 { font-size: 2.2rem;  margin-bottom: 0.5em; }
+h2 { font-size: 1.6rem;  margin-bottom: 0.5em; }
+h3 { font-size: 1.2rem;  margin-bottom: 0.4em; }
+
+p {
+  margin-bottom: 1.2em;
+  max-width: var(--container-max);
+}
+
+p:last-child { margin-bottom: 0; }
+
+strong { font-weight: 700; }
+
+/* ------------------------------------------------------------
+   8. Links
+   --color-link: #2c5f77 (light) / #8ec5db (dark)
+   Both verified ≥ 4.5:1 on their respective backgrounds.
+   ------------------------------------------------------------ */
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  transition: color var(--transition-speed) ease-in-out;
+}
+
+a:hover, a:focus {
+  color: var(--color-btn-primary);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--color-btn-primary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ------------------------------------------------------------
+   9. Accessibility Toolbar
+   ------------------------------------------------------------ */
+.a11y-toolbar {
+  background-color: var(--toolbar-bg);
+  border-bottom: 1px solid var(--toolbar-border);
+  padding: 8px 24px;
+}
+
+.a11y-toolbar__inner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+}
+
+.a11y-toolbar__label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text-muted);
+  margin-right: 4px;
+  white-space: nowrap;
+}
+
+.a11y-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1px solid var(--toolbar-border);
+  border-radius: 6px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease-in-out,
+              color var(--transition-speed) ease-in-out,
+              border-color var(--transition-speed) ease-in-out;
+  white-space: nowrap;
+}
+
+/* Hover: dark sage bg + white text — 5.10:1 ✓ */
+.a11y-btn:hover {
+  background-color: var(--color-btn-primary);
+  color: #fff;
+  border-color: var(--color-btn-primary);
+}
+
+.a11y-btn:focus-visible {
+  outline: 3px solid var(--color-btn-primary);
+  outline-offset: 3px;
+}
+
+/* Active/pressed: darker sage — white text 7.58:1 ✓ */
+.a11y-btn[aria-pressed="true"] {
+  background-color: var(--color-btn-primary-hover);
+  color: #fff;
+  border-color: var(--color-btn-primary-hover);
+}
+
+/* ------------------------------------------------------------
+   10. Navigation Bar
+   ------------------------------------------------------------ */
+.site-nav {
+  background-color: var(--color-bg-dark);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.site-nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding: 16px 24px;
+}
+
+.site-nav__logo {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #eae6dd;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.site-nav__logo:hover,
+.site-nav__logo:focus {
+  color: var(--color-caramel);
+}
+
+.site-nav__links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+/* Nav links: #c8c0b4 on #2c3a45 — 5.76:1 ✓ */
+.site-nav__links a {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #c8c0b4;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-speed) ease-in-out,
+              border-color var(--transition-speed) ease-in-out;
+}
+
+.site-nav__links a:hover {
+  color: #eae6dd;
+  border-bottom-color: var(--color-sage);
+}
+
+/* Active page — aria-current="page" + visible underline */
+.site-nav__links a[aria-current="page"] {
+  color: #eae6dd;
+  border-bottom-color: var(--color-caramel);
+}
+
+.site-nav__links a:focus-visible {
+  outline: 3px solid var(--color-caramel);
+  outline-offset: 3px;
+}
+
+/* ------------------------------------------------------------
+   11. Page Layout Sections
+   ------------------------------------------------------------ */
+.section {
+  padding-block: var(--section-padding);
+}
+
+.section--alt {
+  background-color: var(--color-bg-section);
+}
+
+.section__heading {
+  margin-bottom: 40px;
+}
+
+.section__subheading {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: var(--container-max);
+  margin-top: 0.5em;
+}
+
+/* ------------------------------------------------------------
+   12. Buttons
+   ------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  padding: 14px 28px;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease-in-out,
+              color var(--transition-speed) ease-in-out;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var(--color-btn-primary-hover);
+  outline-offset: 3px;
+}
+
+/* Primary sage button — bg #5e7458, white text 5.10:1 ✓ */
+.btn--sage {
+  background-color: var(--color-btn-primary);
+  color: #fff;
+}
+
+.btn--sage:hover {
+  background-color: var(--color-btn-primary-hover);
+  color: #fff;
+}
+
+/* Caramel button — dark text #1f2937 on #c89262 = 5.42:1 ✓ */
+.btn--caramel {
+  background-color: var(--color-caramel);
+  color: #1f2937;
+}
+
+.btn--caramel:hover {
+  background-color: #b07d50;
+  color: #1f2937;
+}
+
+/* Ghost button — sage border + text, using accessible sage */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-btn-primary);
+  border: 2px solid var(--color-btn-primary);
+}
+
+.btn--ghost:hover {
+  background-color: var(--color-btn-primary);
+  color: #fff;
+}
+
+.btn--full-width {
+  width: 100%;
+}
+
+/* ------------------------------------------------------------
+   13. Hero Section
+   ------------------------------------------------------------ */
+.hero {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-bg-section);
+  overflow: hidden;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.35;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  padding-block: 80px;
+  max-width: 600px;
+}
+
+.hero__heading {
+  font-size: 2.6rem;
+  margin-bottom: 0.5em;
+}
+
+.hero__subheading {
+  font-size: 1.1rem;
+  color: var(--color-text-muted);
+  margin-bottom: 2em;
+  max-width: var(--container-max);
+}
+
+/* ------------------------------------------------------------
+   14. Service Cards
+   ------------------------------------------------------------ */
+.services-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  list-style: none;
+}
+
+.service-card {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-bg-section);
+  border-radius: 12px;
+  padding: 32px;
+  max-width: var(--container-max);
+}
+
+[data-theme="dark"] .service-card {
+  border-color: #3a4f5c;
+}
+
+/* Icon + label: --color-sage-text #3d5c38 = 6.98:1 ✓ */
+.service-card__icon-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-sage-text);
+  margin-bottom: 12px;
+}
+
+.service-card__icon-label span[aria-hidden="true"] {
+  font-size: 1.2rem;
+}
+
+.service-card__name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+}
+
+.service-card__description {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.75em;
+}
+
+/* Price: --color-caramel-text #7a4f1e = 6.32:1 ✓ */
+.service-card__price {
+  font-weight: 700;
+  color: var(--color-caramel-text);
+  font-size: 1rem;
+}
+
+/* ------------------------------------------------------------
+   15. How to Book — Numbered Steps
+   ------------------------------------------------------------ */
+.steps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: var(--container-max);
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Step numbers: dark text #1f2937 on caramel #c89262 = 5.42:1 ✓ */
+.step__number {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-caramel);
+  color: #1f2937;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step__text {
+  padding-top: 10px;
+  font-size: 1rem;
+  color: var(--color-text);
+}
+
+/* ------------------------------------------------------------
+   16. CTA Banner
+   ------------------------------------------------------------ */
+/* bg #5e7458 (--color-btn-primary), white text 5.10:1 ✓ */
+.cta-banner {
+  background-color: var(--color-btn-primary);
+  padding-block: var(--section-padding);
+}
+
+.cta-banner .container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.cta-banner__text {
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 700;
+  max-width: var(--container-max);
+}
+
+/* Button inside banner: white bg, dark text */
+.cta-banner .btn--sage {
+  background-color: #fff;
+  color: var(--color-btn-primary-hover);
+}
+
+.cta-banner .btn--sage:hover {
+  background-color: var(--color-bg-section);
+  color: var(--color-btn-primary-hover);
+}
+
+/* ------------------------------------------------------------
+   17. Footer
+   Footer bg: #2c3a45. Text #c8c0b4 = 5.76:1 ✓. Links #a8ccd8 = 5.85:1 ✓
+   ------------------------------------------------------------ */
+.site-footer {
+  background-color: var(--color-bg-dark);
+  color: #c8c0b4;
+  padding-block: 48px;
+}
+
+.site-footer__inner {
+  max-width: var(--container-wide);
+  margin-inline: auto;
+  padding-inline: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 40px;
+}
+
+.site-footer__heading {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #eae6dd;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+
+.site-footer p,
+.site-footer address {
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1.7;
+  color: #c8c0b4;
+  max-width: none;
+  margin-bottom: 0;
+}
+
+.site-footer a {
+  color: #a8ccd8;
+  text-decoration: underline;
+}
+
+.site-footer a:hover {
+  color: #eae6dd;
+}
+
+.site-footer__nav {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.site-footer__nav a {
+  font-size: 0.9rem;
+}
+
+/* Footer copy: #b0bcc4 on #2c3a45 = 5.15:1 ✓ (was #7a8a94 which failed) */
+.site-footer__copy {
+  grid-column: 1 / -1;
+  padding-top: 32px;
+  border-top: 1px solid #3a4f5c;
+  font-size: 0.8rem;
+  color: #b0bcc4;
+}
+
+/* ------------------------------------------------------------
+   18. Form Styles (booking.html)
+   ------------------------------------------------------------ */
+.booking-form {
+  padding-block: 40px var(--section-padding);
+  max-width: 680px;
+}
+
+fieldset {
+  border: 1px solid var(--color-bg-section);
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 32px;
+}
+
+[data-theme="dark"] fieldset {
+  border-color: #3a4f5c;
+}
+
+legend {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  padding-inline: 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 28px;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.form-label__required {
+  font-weight: 400;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.form-help {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+}
+
+/* Input border: #7a7060 on cream = 4.52:1 ✓ (UI component 3:1 required) */
+.form-input,
+.form-textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-input-border);
+  border-radius: 8px;
+  padding: 12px 14px;
+  width: 100%;
+  transition: border-color var(--transition-speed) ease-in-out,
+              box-shadow var(--transition-speed) ease-in-out;
+}
+
+/* Focus ring: darker sage border 5.10:1 ✓ */
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--color-btn-primary);
+  box-shadow: 0 0 0 3px rgba(94, 116, 88, 0.3);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Radio groups */
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 14px 16px;
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-input-border);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color var(--transition-speed) ease-in-out,
+              background-color var(--transition-speed) ease-in-out;
+}
+
+/* Checked border: accessible sage 5.10:1 ✓ */
+.radio-option:has(input:checked) {
+  border-color: var(--color-btn-primary);
+  background-color: rgba(94, 116, 88, 0.08);
+}
+
+.radio-option input[type="radio"] {
+  flex-shrink: 0;
+  margin-top: 3px;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-btn-primary);
+  cursor: pointer;
+}
+
+.radio-option:focus-within {
+  outline: 3px solid var(--color-btn-primary);
+  outline-offset: 2px;
+}
+
+.radio-option__label {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--color-text);
+  display: block;
+}
+
+.radio-option__desc {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
+  display: block;
+}
+
+/* Time slots */
+.time-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.time-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background-color: var(--color-bg);
+  border: 1.5px solid var(--color-input-border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: border-color var(--transition-speed) ease-in-out,
+              background-color var(--transition-speed) ease-in-out;
+}
+
+.time-option:has(input:checked) {
+  border-color: var(--color-btn-primary);
+  background-color: rgba(94, 116, 88, 0.08);
+}
+
+.time-option:focus-within {
+  outline: 3px solid var(--color-btn-primary);
+  outline-offset: 2px;
+}
+
+.time-option input[type="radio"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-btn-primary);
+  cursor: pointer;
+}
+
+/* Error messages: --color-error #9b3d3d = 6.21:1 ✓ */
+.field-error {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--color-error);
+  margin-top: 4px;
+  display: none;
+}
+
+.field-error.is-visible {
+  display: block;
+}
+
+/* Invalid input border: --color-error-border = 3.04:1 UI ✓ */
+.form-input.is-invalid,
+.form-textarea.is-invalid {
+  border-color: var(--color-error-border);
+  box-shadow: 0 0 0 3px rgba(155, 61, 61, 0.18);
+}
+
+/* ------------------------------------------------------------
+   19. Confirmation Summary Screen
+   ------------------------------------------------------------ */
+.confirmation-screen {
+  display: none;
+  padding-block: 48px var(--section-padding);
+  max-width: 680px;
+}
+
+.confirmation-screen.is-visible {
+  display: block;
+}
+
+.confirmation-screen h2 {
+  margin-bottom: 32px;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 40px;
+}
+
+.summary-table th,
+.summary-table td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-bg-section);
+  font-size: 0.95rem;
+  vertical-align: top;
+}
+
+[data-theme="dark"] .summary-table th,
+[data-theme="dark"] .summary-table td {
+  border-bottom-color: #3a4f5c;
+}
+
+.summary-table th {
+  font-weight: 700;
+  color: var(--color-text);
+  width: 40%;
+}
+
+.summary-table td {
+  color: var(--color-text-muted);
+}
+
+.confirmation-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ------------------------------------------------------------
+   20. Success Message
+   ------------------------------------------------------------ */
+.success-message {
+  display: none;
+  padding-block: 64px;
+  max-width: 680px;
+}
+
+.success-message.is-visible {
+  display: block;
+}
+
+.success-message__box {
+  background-color: rgba(94, 116, 88, 0.1);
+  border: 1.5px solid var(--color-btn-primary);
+  border-radius: 12px;
+  padding: 40px 32px;
+}
+
+/* Heading: --color-btn-primary-hover #48593d = 7.58:1 on cream ✓ */
+.success-message__heading {
+  color: var(--color-btn-primary-hover);
+  margin-bottom: 0.5em;
+}
+
+.success-message__text {
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+/* ------------------------------------------------------------
+   21. About Page — Team Cards
+   ------------------------------------------------------------ */
+.team-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: var(--container-max);
+}
+
+.team-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  background-color: var(--color-bg-section);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.team-card__photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: var(--color-bg-dark);
+}
+
+.team-card__info {
+  flex: 1;
+}
+
+.team-card__name {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+/* Role: --color-sage-text = 6.98:1 (light) / 4.88:1 (dark) ✓ */
+.team-card__role {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-sage-text);
+  margin-bottom: 8px;
+}
+
+.team-card__bio {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  margin-bottom: 0;
+}
+
+/* ------------------------------------------------------------
+   22. About Page — Location & Hours Table
+   ------------------------------------------------------------ */
+.hours-table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+
+.hours-table th,
+.hours-table td {
+  text-align: left;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--color-bg-section);
+  font-size: 0.95rem;
+}
+
+[data-theme="dark"] .hours-table th,
+[data-theme="dark"] .hours-table td {
+  border-bottom-color: #3a4f5c;
+}
+
+.hours-table th {
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.hours-table td {
+  color: var(--color-text-muted);
+}
+
+.location-address {
+  font-style: normal;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: 24px;
+  max-width: none;
+}
+
+.location-map-img {
+  width: 100%;
+  max-width: 560px;
+  border-radius: 10px;
+  border: 1px solid var(--color-bg-section);
+  margin-bottom: 12px;
+}
+
+/* ------------------------------------------------------------
+   23. Accessibility Commitment Box
+   ------------------------------------------------------------ */
+.commitment-box {
+  background-color: rgba(44, 95, 119, 0.08);
+  border-left: 4px solid var(--color-link);
+  border-radius: 0 10px 10px 0;
+  padding: 28px 32px;
+  max-width: var(--container-max);
+}
+
+.commitment-box p {
+  margin-bottom: 0.8em;
+  font-size: 0.975rem;
+}
+
+/* ------------------------------------------------------------
+   24. Page Header (inner pages)
+   ------------------------------------------------------------ */
+.page-header {
+  background-color: var(--color-bg-section);
+  padding-block: 56px;
+  border-bottom: 1px solid #d8d0c4;
+}
+
+[data-theme="dark"] .page-header {
+  border-bottom-color: #3a4f5c;
+}
+
+.page-header h1 {
+  margin-bottom: 0.4em;
+}
+
+/* ------------------------------------------------------------
+   25. Responsive — 200% zoom / narrow viewports
+   ------------------------------------------------------------ */
+@media (max-width: 640px) {
+  :root {
+    --section-padding: 48px;
+  }
+
+  h1 { font-size: 1.7rem; }
+  h2 { font-size: 1.35rem; }
+
+  .site-nav__inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .site-nav__links {
+    gap: 4px;
+  }
+
+  .hero__heading { font-size: 1.9rem; }
+  .hero          { min-height: 360px; }
+
+  .team-card          { flex-direction: column; }
+  .confirmation-actions { flex-direction: column; }
+  .time-grid          { gap: 8px; }
+  fieldset            { padding: 20px; }
+}

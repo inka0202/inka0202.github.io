@@ -1,23 +1,24 @@
 # ZenPetals — Website Specification
+
 ### Accessible Wellness & Spa Booking Website
 
 ---
 
 ## 1. Project Identity
 
-| Field | Details |
-|---|---|
-| **Name** | ZenPetals |
-| **Tagline** | *Book your calm. At your pace.* |
-| **Type** | Static multi-page website with a functional booking form |
-| **Pages** | Home, Booking Form, About |
-| **Course** | Integrative Design — Autism-Friendly Web Design Assignment |
+| Field       | Details                                                    |
+| ----------- | ---------------------------------------------------------- |
+| **Name**    | ZenPetals                                                  |
+| **Tagline** | _Book your calm. At your pace._                            |
+| **Type**    | Static multi-page website with a functional booking form   |
+| **Pages**   | Home, Booking Form, About                                  |
+| **Course**  | Integrative Design — Autism-Friendly Web Design Assignment |
 
 ---
 
 ## 2. Goal
 
-The goal of ZenPetals is to provide a **calm, predictable, and fully accessible** online booking experience for a wellness and spa centre. The website is designed specifically to meet the needs of autistic users, following the guidelines established in the *Designing for the Autism Spectrum* presentation. Every design and content decision serves to lower cognitive load, reduce sensory stress, and give the user full control over their experience.
+The goal of ZenPetals is to provide a **calm, predictable, and fully accessible** online booking experience for a wellness and spa centre. The website is designed specifically to meet the needs of autistic users, following the guidelines established in the _Designing for the Autism Spectrum_ presentation. Every design and content decision serves to lower cognitive load, reduce sensory stress, and give the user full control over their experience.
 
 ---
 
@@ -98,7 +99,9 @@ The only animation on ZenPetals is a gentle **opacity fade-in** on page load (20
 
 ```css
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
@@ -141,20 +144,20 @@ Every icon in the interface is accompanied by a visible text label directly besi
 **Guideline:** Short sentences (15–20 words); concrete words; no idioms, no sarcasm; active voice; CEFR B1 reading level (Flesch-Kincaid grade 7–8).
 
 **How we follow it on ZenPetals:**
-All website copy is written at B1 reading level. Sentences are short and direct. Example: *"Choose a service. Pick a date and time. We will confirm your booking by email."* — not *"Embark on your wellness journey today!" (idiom) or "Don't miss out!" (urgency manipulation)*. No sarcasm or clever wordplay is used. All button labels are literal: **"Book Now"**, **"Send Booking"**, **"Go to Home"** — never vague calls to action like *"Let's get started"*. Copy is reviewed using the Hemingway Editor.
+All website copy is written at B1 reading level. Sentences are short and direct. Example: _"Choose a service. Pick a date and time. We will confirm your booking by email."_ — not _"Embark on your wellness journey today!" (idiom) or "Don't miss out!" (urgency manipulation)_. No sarcasm or clever wordplay is used. All button labels are literal: **"Book Now"**, **"Send Booking"**, **"Go to Home"** — never vague calls to action like _"Let's get started"_. Copy is reviewed using the Hemingway Editor.
 
 ---
 
 ### Rule 11 · Error Messages That Help
 
-**Guideline:** Every error must be Specific (not vague), Helpful (not blaming), and Actionable (not a code). Pattern: *What happened · Why it happened · What to do next.*
+**Guideline:** Every error must be Specific (not vague), Helpful (not blaming), and Actionable (not a code). Pattern: _What happened · Why it happened · What to do next._
 
 **How we follow it on ZenPetals:**
 All form validation errors follow the three-part pattern. Examples:
 
-- Instead of *"Invalid input"* → **"Please enter a valid email address. It should look like: name@example.com."**
-- Instead of *"Required field"* → **"We need your full name to confirm the booking. Please fill in this field."**
-- Instead of *"Error 500"* → **"We could not send your booking. Our server had a problem. Please try again in a few minutes."**
+- Instead of _"Invalid input"_ → **"Please enter a valid email address. It should look like: name@example.com."**
+- Instead of _"Required field"_ → **"We need your full name to confirm the booking. Please fill in this field."**
+- Instead of _"Error 500"_ → **"We could not send your booking. Our server had a problem. Please try again in a few minutes."**
 
 Error messages are displayed below the relevant field in a distinct color (muted red), accompanied by a text icon label ("⚠ Error:") — never by color alone.
 
@@ -165,7 +168,7 @@ Error messages are displayed below the relevant field in a distinct color (muted
 **Guideline:** Single column; visible labels above fields (never placeholder-only); group related fields with `<fieldset>` + `<legend>`; help text below each field before submission; no time limits; validate on blur (not on every keystroke); confirm-before-commit screen for submissions; avoid CAPTCHA, auto-formatting while typing, and asterisk-only required field markers.
 
 **How we follow it on ZenPetals:**
-The Booking Form page is a carefully structured, single-column form. Every field has a visible label above it. Required fields are marked with the word *"(required)"* in text — not just a red asterisk. Help text appears below each field (for example: *"Format: DD/MM/YYYY"* under the date field). Fields are grouped logically using `<fieldset>` and `<legend>`: Group 1 — Personal Details, Group 2 — Service Selection, Group 3 — Date & Time, Group 4 — Additional Notes. Validation triggers on `blur` (when the user leaves a field) — not on every keystroke. There is no CAPTCHA. There is no time limit. Before final submission, a **confirmation summary screen** shows all entered data and offers a **"Go back and edit"** button alongside the final **"Confirm Booking"** button.
+The Booking Form page is a carefully structured, single-column form. Every field has a visible label above it. Required fields are marked with the word _"(required)"_ in text — not just a red asterisk. Help text appears below each field (for example: _"Format: DD/MM/YYYY"_ under the date field). Fields are grouped logically using `<fieldset>` and `<legend>`: Group 1 — Personal Details, Group 2 — Service Selection, Group 3 — Date & Time, Group 4 — Additional Notes. Validation triggers on `blur` (when the user leaves a field) — not on every keystroke. There is no CAPTCHA. There is no time limit. Before final submission, a **confirmation summary screen** shows all entered data and offers a **"Go back and edit"** button alongside the final **"Confirm Booking"** button.
 
 ---
 
@@ -196,7 +199,7 @@ During development, the site is validated using:
 - **WebAIM Contrast Checker** — for all text and UI component pairs
 - **Hemingway Editor** — for all body copy and form microcopy
 - **Keyboard-only navigation test** — full site navigable using Tab, Enter, Space, Escape only
-- **Cognitive walkthrough** — for each task (finding services, completing the form, reading the About page), the question *"Can the user predict what happens next?"* is asked at every step
+- **Cognitive walkthrough** — for each task (finding services, completing the form, reading the About page), the question _"Can the user predict what happens next?"_ is asked at every step
 
 ---
 
@@ -212,10 +215,10 @@ During development, the site is validated using:
 
 1. **Accessibility Toolbar** — Light/dark toggle, reduce motion toggle, text size controls. Visible on all pages.
 2. **Navigation Bar** — Logo (text: "ZenPetals"), links: Home (active), Booking, About. Sticky, same position on all pages.
-3. **Hero Section** — A calm, full-width static photograph of a spa interior (no autoplay, no video). Headline: *"Wellness, at your pace."* Subheading: *"Book a treatment that fits your needs. We make it simple and calm."* One CTA button: **"Book a Treatment"** → links to Booking page.
+3. **Hero Section** — A calm, full-width static photograph of a spa interior (no autoplay, no video). Headline: _"Wellness, at your pace."_ Subheading: _"Book a treatment that fits your needs. We make it simple and calm."_ One CTA button: **"Book a Treatment"** → links to Booking page.
 4. **What We Offer Section** — Three service cards in a single-column list (not a carousel): Massage Therapy, Aromatherapy, Relaxation Facial. Each card has: icon + visible text label, service name (heading), 2–3 sentence description in plain language, and a price.
 5. **How to Book Section** — Three numbered steps in a vertical list: 1. Choose a service. 2. Fill in the form. 3. We confirm by email. No animation. Simple, literal copy.
-6. **CTA Banner** — Soft sage-green background block with the text: *"Ready to relax? Booking takes less than 3 minutes."* Button: **"Go to Booking Form"**.
+6. **CTA Banner** — Soft sage-green background block with the text: _"Ready to relax? Booking takes less than 3 minutes."_ Button: **"Go to Booking Form"**.
 7. **Footer** — Address, phone, email (all plain text, no social media icons without labels), sitemap links (Home, Booking, About), copyright line.
 
 ---
@@ -228,30 +231,29 @@ During development, the site is validated using:
 
 1. **Accessibility Toolbar** (same as all pages)
 2. **Navigation Bar** — "Booking" link marked as active with `aria-current="page"`
-3. **Page Heading** — `<h1>`: "Book a Treatment". Short subheading: *"Fill in the form below. All required fields are marked (required)."*
+3. **Page Heading** — `<h1>`: "Book a Treatment". Short subheading: _"Fill in the form below. All required fields are marked (required)."_
 4. **Booking Form** — Single column, structured with `<fieldset>` groups:
-
    - **Fieldset 1 — Your Details**
-     - Full Name (required) — label above, help text: *"Enter your first and last name."*
-     - Email Address (required) — label above, help text: *"We will send your confirmation here. Example: name@example.com"*
-     - Phone Number (optional) — label above, help text: *"We will only call you if there is a problem with your booking."*
+     - Full Name (required) — label above, help text: _"Enter your first and last name."_
+     - Email Address (required) — label above, help text: _"We will send your confirmation here. Example: name@example.com"_
+     - Phone Number (optional) — label above, help text: _"We will only call you if there is a problem with your booking."_
 
    - **Fieldset 2 — Choose a Service**
      - Radio buttons (not a dropdown) for: Massage Therapy / Aromatherapy / Relaxation Facial (required)
      - Each option has a visible label and a short description in brackets
 
    - **Fieldset 3 — Date & Time**
-     - Preferred Date (required) — date picker input, help text: *"Please choose a date at least 2 days from today."*
+     - Preferred Date (required) — date picker input, help text: _"Please choose a date at least 2 days from today."_
      - Preferred Time (required) — radio buttons for time slots (09:00, 11:00, 13:00, 15:00, 17:00) — not a free-text field
 
    - **Fieldset 4 — Additional Notes**
-     - Optional textarea — label: "Is there anything we should know?", help text: *"For example: allergies, mobility needs, or preferences. This is optional."*
+     - Optional textarea — label: "Is there anything we should know?", help text: _"For example: allergies, mobility needs, or preferences. This is optional."_
 
 5. **Submit Button** — Full-width, sage-colored, labeled **"Review My Booking"** (not "Submit" — which is ambiguous). Clicking shows the confirmation summary screen.
 
-6. **Confirmation Summary Screen** — Appears in place of the form (not a new page). Displays all entered information clearly. Heading: *"Please check your booking details."* Two buttons: **"Go Back and Edit"** (returns to the form with data preserved) and **"Confirm Booking"** (final submission).
+6. **Confirmation Summary Screen** — Appears in place of the form (not a new page). Displays all entered information clearly. Heading: _"Please check your booking details."_ Two buttons: **"Go Back and Edit"** (returns to the form with data preserved) and **"Confirm Booking"** (final submission).
 
-7. **Success Message** — After confirming, the form area is replaced with: *"Your booking is confirmed. We will send a confirmation to [email address] within 24 hours."*
+7. **Success Message** — After confirming, the form area is replaced with: _"Your booking is confirmed. We will send a confirmation to [email address] within 24 hours."_
 
 ---
 
@@ -267,57 +269,58 @@ During development, the site is validated using:
 4. **Our Story Section** — 2–3 short paragraphs in plain language. No idioms. Explains when the spa was founded, the values (calm, inclusivity, care), and the commitment to accessible design.
 5. **Our Commitment to Accessibility Section** — Explicit statement that ZenPetals is designed to be welcoming for autistic visitors, people with sensory sensitivities, and anyone who prefers a calm, predictable experience. Written in plain, literal language.
 6. **Our Team Section** — 2–3 team members. Each entry: photograph (with `alt` text describing the person), name, role, one sentence about their specialty. Single-column list, no carousel.
-7. **Our Location Section** — Plain text address, opening hours as a simple table, and an embedded static map image (not an interactive widget that auto-loads scripts). A text link to Google Maps is provided separately.
+7. **Our Location Section** — Plain text address, opening hours presented in a simple table, and a static map image are provided instead of an embedded interactive map to reduce cognitive load, prevent unexpected movement, and improve predictability for autistic users. A separate text link to Google Maps is also included.
 8. **Footer** — Same as Home page.
 
 ---
 
 ## 7. Technical Specifications
 
-| Spec | Value |
-|---|---|
-| **HTML** | Semantic HTML5 (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`, `<fieldset>`, `<legend>`, `<label>`) |
-| **CSS** | Custom CSS with CSS variables for theming; no CSS frameworks |
-| **JavaScript** | Minimal vanilla JS for: accessibility toolbar (dark mode, font size, reduce motion), form validation (on blur), confirmation screen toggle |
-| **Fonts** | Atkinson Hyperlegible (body), Lora (headings) — loaded via Google Fonts |
-| **ARIA** | `aria-current="page"` on active nav links; `aria-live="polite"` on error messages; `aria-describedby` linking fields to their help text; `aria-hidden="true"` on decorative icons |
-| **Color scheme** | CSS custom properties for light and dark mode; toggled via `data-theme` attribute on `<html>` |
-| **Zoom support** | Fully functional at 200% browser zoom; no horizontal scroll |
-| **Keyboard navigation** | All interactive elements reachable and operable via Tab/Enter/Space/Escape |
-| **Form validation** | Client-side, on `blur`; error messages injected via JS below each invalid field; no submission without all required fields valid |
-| **No dependencies** | No jQuery, no Bootstrap, no third-party UI libraries |
+| Spec                    | Value                                                                                                                                                                             |
+| ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **HTML**                | Semantic HTML5 (`<header>`, `<nav>`, `<main>`, `<section>`, `<footer>`, `<fieldset>`, `<legend>`, `<label>`)                                                                      |
+| **CSS**                 | Custom CSS with CSS variables for theming; no CSS frameworks                                                                                                                      |
+| **JavaScript**          | Minimal vanilla JS for: accessibility toolbar (dark mode, font size, reduce motion), form validation (on blur), confirmation screen toggle                                        |
+| **Fonts**               | Atkinson Hyperlegible (body), Lora (headings) — loaded via Google Fonts                                                                                                           |
+| **ARIA**                | `aria-current="page"` on active nav links; `aria-live="polite"` on error messages; `aria-describedby` linking fields to their help text; `aria-hidden="true"` on decorative icons |
+| **Color scheme**        | CSS custom properties for light and dark mode; toggled via `data-theme` attribute on `<html>`                                                                                     |
+| **Zoom support**        | Fully functional at 200% browser zoom; no horizontal scroll                                                                                                                       |
+| **Keyboard navigation** | All interactive elements reachable and operable via Tab/Enter/Space/Escape                                                                                                        |
+| **Form validation**     | Client-side, on `blur`; error messages injected via JS below each invalid field; no submission without all required fields valid                                                  |
+| **No dependencies**     | No jQuery, no Bootstrap, no third-party UI libraries                                                                                                                              |
 
 ---
 
 ## 8. Color Palette
 
-| Name | Hex | Usage |
-|---|---|---|
-| Warm Cream (bg) | `#f8f5ee` | Page background (light mode) |
-| Cream 2 | `#f0ebe0` | Section backgrounds, card fills |
-| Dark Slate | `#2c3a45` | Page background (dark mode), nav bar |
-| Text | `#1f2937` | Body text |
-| Muted | `#4b5566` | Secondary text, descriptions |
-| Sage | `#7a9170` | Primary accent, buttons, borders |
-| Sage Dark | `#5e7458` | Hover states, emphasis |
-| Dusty Blue | `#6b8a9b` | Links, info callouts |
-| Caramel | `#c89262` | Decorative accents, step numbers |
-| Muted Red | `#c47a7a` | Error messages only |
+| Name            | Hex       | Usage                                |
+| --------------- | --------- | ------------------------------------ |
+| Warm Cream (bg) | `#f8f5ee` | Page background (light mode)         |
+| Cream 2         | `#f0ebe0` | Section backgrounds, card fills      |
+| Dark Slate      | `#2c3a45` | Page background (dark mode), nav bar |
+| Text            | `#1f2937` | Body text                            |
+| Muted           | `#4b5566` | Secondary text, descriptions         |
+| Sage            | `#7a9170` | Primary accent, buttons, borders     |
+| Sage Dark       | `#5e7458` | Hover states, emphasis               |
+| Dusty Blue      | `#6b8a9b` | Links, info callouts                 |
+| Caramel         | `#c89262` | Decorative accents, step numbers     |
+| Muted Red       | `#c47a7a` | Error messages only                  |
 
 ---
 
 ## 9. Fonts
 
-| Font | Role | Weights |
-|---|---|---|
-| Atkinson Hyperlegible | Body, labels, UI | 400, 700 |
-| Lora | Headings (h1–h3), fieldset legends | 500, 600 |
+| Font                  | Role                               | Weights  |
+| --------------------- | ---------------------------------- | -------- |
+| Atkinson Hyperlegible | Body, labels, UI                   | 400, 700 |
+| Lora                  | Headings (h1–h3), fieldset legends | 500, 600 |
 
 ---
 
 ## 10. Accessibility Checklist (Pre-Launch)
 
 **Visual**
+
 - [ ] Body text 18px, line-height 1.7
 - [ ] Off-white background (#f8f5ee)
 - [ ] Muted, low-saturation palette throughout
@@ -325,6 +328,7 @@ During development, the site is validated using:
 - [ ] Color is never the only signal (all errors also have text labels)
 
 **Interaction**
+
 - [ ] Navigation is identical across all three pages
 - [ ] No autoplay content anywhere on the site
 - [ ] `prefers-reduced-motion` CSS media query present on every page
@@ -332,6 +336,7 @@ During development, the site is validated using:
 - [ ] Every icon has a visible text label
 
 **Content**
+
 - [ ] All copy at B1 reading level (verified in Hemingway Editor)
 - [ ] No idioms, no sarcasm, no ambiguous language
 - [ ] Error messages are specific, helpful, and actionable
@@ -340,6 +345,7 @@ During development, the site is validated using:
 - [ ] No time limits on any page or form
 
 **Control**
+
 - [ ] Light/dark mode toggle visible and persistent
 - [ ] Text size controls functional
 - [ ] Reduce motion toggle available in-page
@@ -348,5 +354,5 @@ During development, the site is validated using:
 
 ---
 
-*Specification written for: Integrative Design Course — Autism-Friendly Web Design Assignment*
-*Website: ZenPetals — Accessible Wellness & Spa Booking*
+_Specification written for: Integrative Design Course — Autism-Friendly Web Design Assignment_
+_Website: ZenPetals — Accessible Wellness & Spa Booking_

@@ -81,6 +81,9 @@
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+  html {
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Injected by accessibility.js Motion toggle */
@@ -89,6 +92,9 @@
 .reduce-motion-override *::after {
   animation-duration: 0.01ms !important;
   transition-duration: 0.01ms !important;
+}
+.reduce-motion-override {
+  scroll-behavior: auto !important;
 }
 
 /* ------------------------------------------------------------
@@ -127,8 +133,8 @@ body {
   color: var(--color-text);
   background-color: var(--color-bg);
   text-align: left;
-  /* Page load fade-in — 450ms, gentle rise. Disabled by reduce-motion. */
-  animation: pageFadeIn 450ms ease-out both;
+  /* Page load fade-in — 200ms, gentle rise. Disabled by reduce-motion. */
+  animation: pageFadeIn 200ms ease-in-out both;
 }
 
 @keyframes pageFadeIn {
